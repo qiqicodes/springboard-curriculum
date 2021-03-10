@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Todo List</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class=>
     <!-- Part 1
     As a user, you should be able to:
 
@@ -21,17 +22,33 @@
     2. checkbox (eventListener) change text property crossover
     3. click (eventListener) button/li edit function
     4. Day/night mode -->
+    
+    <container>
+        
+        <header class="todo-header"><h1>Todo List</h1></header>
+        <input type="checkbox" id="switch" /><label for="switch" id="switch-label">Toggle</label>
+        <br>
+        <div>
+            <h2>Test Test</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint eligendi facilis quisquam ratione, aspernatur iste blanditiis, ipsam voluptates quam optio consectetur atque amet animi at veniam tempore. Repellat, consequatur laudantium.</p>
+        </div>
+        <div>
+            <h2>Test Test Again</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint eligendi facilis quisquam ratione, aspernatur iste blanditiis, ipsam voluptates quam optio consectetur atque amet animi at veniam tempore. Repellat, consequatur laudantium.</p>
+        </div>
 
-    <h1>Todo List</h1>
+        <section class="todo-body" id="">
+            <form action="#" id="newTodo">
+                <label for="newTodo">Todo: </label>
+                <input type="text" name="newTodo" id="newTodo" autofocus> 
+                <input type="submit" value= "+">
+            </form>
+            <ul id="todoList">
 
-    <form action="#" id="newTodo">
-        <label for="newTodo">Todo: </label>
-        <input type="text" name="newTodo" id="newTodo" autofocus> 
-        <input type="submit" value= "+">
-    </form>
-    <ul id="todoList">
-
-    </ul>
+            </ul>
+        </section>
+    </container>
     <script src="app.js"></script>
+    <script src="localStorage.js"></script>
 </body>
 </html>
