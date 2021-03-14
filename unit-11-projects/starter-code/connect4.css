@@ -13,9 +13,29 @@
   margin: 5px;
   width: 80%;
   height: 80%;
+  border-radius: 50%;
+  /* animation-name: dropdown;
+  animation-duration: 1.5s;
 }
+  
+  @keyframes dropdown {
+  from {
+    transform: translateY(-400px);
+  }
+  to {
+    transform: translateY(0px);
+  } */
+ }
+
 
 /* TODO: make pieces red/blue,  depending on player 1/2 piece */
+.player1 {
+ background-color: purple; 
+}
+
+.player2 {
+  background-color: salmon;
+}
 
 /* column-top is table row of clickable areas for each column */
 
@@ -26,3 +46,4 @@
 #column-top td:hover {
   background-color: gold;
 }
+
