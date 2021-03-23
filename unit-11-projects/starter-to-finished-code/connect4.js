@@ -55,8 +55,8 @@ function makeHtmlBoard() {
 
 function findSpotForCol(x) {
   // TODO: write the real version of this, rather than always returning 0
-  for (y=HEIGHT; y>=0; y--){
-    if(board[y][x] === null){
+  for (let y=HEIGHT-1; y>=0; y--){
+    if(!board[y][x]){
       return y;
     }
   }
@@ -70,7 +70,7 @@ function placeInTable(y, x) {
   const piece = document.createElement('div');
   piece.classList.add('piece');
   piece.classList.add(`player${currPlayer}`);
-  
+
   const spot = document.getElementById(`${y}-${x}`);
   spot.append(piece);
 }
@@ -114,6 +114,8 @@ function handleClick(evt) {
   // switch players
   // TODO: switch currPlayer 1 <-> 2
   currPlayer = currPlayer === 1 ? 2 : 1;
+
+  
 }
 
 /** checkForWin: check board cell-by-cell for "does a win start here?" */
@@ -135,6 +137,8 @@ function checkForWin() {
   }
 
   // TODO: read and understand this code. Add comments to help you.
+  // iterating the x axis and the y axis, four winning conditions. 
+  //same currPlayer for 4 in a row, horizontally, vertially, diagonally left and diagonally right will trigger the _win() to double check if it is true winning
 
   for (let y = 0; y < HEIGHT; y++) {
     for (let x = 0; x < WIDTH; x++) {

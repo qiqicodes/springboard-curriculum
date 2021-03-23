@@ -1,5 +1,10 @@
 /* game board table */
-
+#game {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
 #board td {
   width: 50px;
   height: 50px;
@@ -14,8 +19,8 @@
   width: 80%;
   height: 80%;
   border-radius: 50%;
-  /* animation-name: dropdown;
-  animation-duration: 1.5s;
+  animation-name: dropdown;
+  animation-duration: 2s;
 }
   
   @keyframes dropdown {
@@ -24,7 +29,7 @@
   }
   to {
     transform: translateY(0px);
-  } */
+  }
  }
 
 
@@ -44,6 +49,6 @@
 }
 
 #column-top td:hover {
-  background-color: gold;
+  background-color:gold;
 }
 
