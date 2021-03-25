@@ -13,11 +13,26 @@ def convert_temp(unit_in, unit_out, temp):
 
       convert_temp("c", "f", 0)  =>  32.0
       convert_temp("f", "c", 212) => 100.0
+
+      Remember that C = 5/9 * (F - 32) and F = C * 9.0 / 5 + 32, 
+      where F is the value of temperature in Fahrenheit, 
+      and C is the value of the same temperature in Celsius.
     """
 
-    # YOUR CODE HERE
+    if unit_in != "f" and unit_in != "c":
+      return f"Invalid unit {unit_in}"
+    
+    if unit_out != "f" and unit_out != "c":
+      return f"Invalid unit {unit_out}"
 
+    if unit_in == "f" and unit_out == "c":
+      temp = (temp - 32) * 5/9 
+    
+    if unit_in == "c" and unit_out == "f":
+      temp = temp * 9.0/ 5 + 32
 
+    return temp
+    
 print("c", "f", 0, convert_temp("c", "f", 0), "should be 32.0")
 print("f", "c", 212, convert_temp("f", "c", 212), "should be 100.0")
 print("z", "f", 32, convert_temp("z", "f", 32), "should be Invalid unit z")
