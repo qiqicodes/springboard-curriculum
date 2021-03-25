@@ -12,9 +12,9 @@ def sum_nums(nums):
     # want you to use it. Please write this by hand.
 
     sum = 0
-    
+
     for num in nums:
-       sum = sum + num
+       sum += num
 
     return sum
 
