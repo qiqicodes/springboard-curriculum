@@ -5,6 +5,15 @@
  * board fills (tie)
  */
 
+// init()
+// gameStart= 0
+
+// pickColor
+
+// event listeners for the game bard
+
+
+
 //create class Game
 class Game {
   constructor(player1, player2, height = 6, width = 7) {
@@ -33,13 +42,16 @@ class Game {
 
   makeHtmlBoard() {
     const board = document.getElementById("board");
+    // board.innerHTML = "";
 
     // make column tops (clickable area for adding a piece to that column)
     const top = document.createElement("tr");
     top.setAttribute("id", "column-top");
-    top.addEventListener("click", handleClick);
 
-    for (let x = 0; x < WIDTH; x++) {
+    // reference to handleClick function
+    this.handleClickHTMLBoard = this.handleClick.bind(this);
+
+    for (let x = 0; x < this.width; x++) {
       const headCell = document.createElement("td");
       headCell.setAttribute("id", x);
       top.append(headCell);
@@ -174,3 +186,17 @@ class Game {
     }
   }
 }
+
+
+
+class Player {
+  constructor(color) {
+    this.color = color;
+  }
+}
+
+document.getElementById("start-game").addEventListener('click', function(){
+  let player1 = new Player(document.getElementById("p1-color"));
+  let player2 = new Player(document.getElementById("p2-color"));
+  new Game(player1, player2);
+})

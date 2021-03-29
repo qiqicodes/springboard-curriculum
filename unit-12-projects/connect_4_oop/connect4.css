@@ -1,4 +1,9 @@
 /* game board table */
+#game {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 #board td {
   width: 50px;
@@ -13,7 +18,20 @@
   width: 80%;
   height: 80%;
   border-radius: 50%;
+  animation-name: dropdown;
+  animation-duration: 2s;
 }
+  
+  @keyframes dropdown {
+  from {
+    transform: translateY(-400px);
+  }
+  to {
+    transform: translateY(0px);
+  }
+ }
+
+
 
 .piece.p1 {
   background-color: red;
