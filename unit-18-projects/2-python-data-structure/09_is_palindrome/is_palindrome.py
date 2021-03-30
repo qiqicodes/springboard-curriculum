@@ -21,3 +21,5 @@ def is_palindrome(phrase):
         >>> is_palindrome('Noon')
         True
     """
+    lower_without_space = phrase.lower().replace(" ", "")
+    return lower_without_space == lower_without_space[::-1]
