@@ -54,7 +54,12 @@ class SpecialWordFinder(WordFinder):
     >>> compi.random_parse() in ['pear', 'carrot', 'kale']
     True
 
+    >>> dirty = SpecialWordFinder('dirty_word.txt')
+    15 words read
     
+    >>> dirty.random_parse() in ['monster', 'random', 'digital', 'firm', 'bless']
+    True
+
     
     '''
 
@@ -65,5 +70,6 @@ class SpecialWordFinder(WordFinder):
         for word in self.words:
             if word.strip() and not word.startswith("#"):
                 word_list.append(word.strip())
+                print(word_list)
         return random.choice(word_list)
 
