@@ -25,12 +25,16 @@ class SerialGenerator:
         self.start = start
         self.next = start
 
+    def __repr__(self):
+        '''Show representation'''
+        return f"Serial Generator start value: {self.start} next value: {self.next}"
+    
     def generate(self):
         '''Return the next Serial number'''
         self.next += 1
         return self.next - 1
 
-    def .reset(self):
+    def reset(self):
         '''Reset number to starting value'''
-        self.start = self.start
+        self.next = self.start
         
