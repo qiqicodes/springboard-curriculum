@@ -5,8 +5,8 @@
  * board fills (tie)
  */
 
-const WIDTH = 7;
-const HEIGHT = 6;
+const WIDTH = 9;
+const HEIGHT = 7;
 
 let currPlayer = 1; // active player: 1 or 2
 const board = []; // array of rows, each row is array of cells  (board[y][x])
@@ -87,6 +87,9 @@ function endGame(msg) {
 function handleClick(evt) {
   // get x from ID of clicked cell
   let x = +evt.target.id;
+  // if (checkForWin()) {
+  //   return endGame("The game as ended");
+  // }
 
   // get next spot in column (if none, ignore click)
   const y = findSpotForCol(x);
