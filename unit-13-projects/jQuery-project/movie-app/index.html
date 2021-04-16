@@ -8,12 +8,35 @@
     <title>Movies App!</title>
 </head>
 <body>
-    <!-- Build an application that uses jQuery to do the following:
-
-    1. Contains a form 
+    <h1>Movie Rating App</h1>
+    
+    <!-- 1. Contains a form 
         with two inputs for a title and rating 
-        along with a button to submit the form.
+        along with a button to submit the form. -->
 
+    <form id="movieForm">
+        <label for="movieTitle">Movie Title</label>
+        <input type="text" id="moveieTitle" autofocus>
+        <label for="movieRating"> Rating</label>
+        <input type="text" id="movieRating">
+        <button>Submit</button>
+    </form>
+
+    <table id="movieTable">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Rating</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+        </tbody>
+    </table>
+
+
+    <!-- Build an application that uses jQuery to do the following:
     2. When the form is submitted, 
         capture the values for each of the inputs and append them to the DOM 
         along with a button to remove each title and rating from the DOM.
@@ -27,7 +50,7 @@
     6. Allow users to sort alphabetically by the title of the movie 
         or by the rating of the movie from lowest to highest and vice versa.
      -->
-     
+
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script src="app.js"></script>
 </body>
