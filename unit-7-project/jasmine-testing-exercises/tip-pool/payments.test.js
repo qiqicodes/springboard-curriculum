@@ -28,7 +28,7 @@ describe("Payments test (with setup and tear-down)", function () {
     expect(curTdList.length).toEqual(3);
     expect(curTdList[0].innerText).toEqual("$50");
     expect(curTdList[1].innerText).toEqual("$10");
-    expect(curTdList[2].innerText).toEqual("%20");
+    expect(curTdList[2].innerText).toEqual("20%");
   });
 
   it("should not add a new payment on submitPaymentInfo() with empty input", function () {
