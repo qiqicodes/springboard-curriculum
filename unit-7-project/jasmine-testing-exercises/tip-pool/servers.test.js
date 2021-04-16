@@ -35,7 +35,9 @@ it("update #servertable when running updateServerTable()", function() {
   expect(curTdList.length).toEqual(2);
   expect(curTdList[0].innerText).toEqual("Alice");
   expect(curTdList[1].innerText).toEqual("$0.00");
+  // expect(curTdList[2].innerText).toEqual("X");
 });
+
   afterEach(function() {
     // teardown logic
     serverId = 0;
