@@ -23,9 +23,22 @@ describe("Payments test (with setup and tear-down)", function() {
         expect(allPayments['payment1'].tipPercent).toEqual(20);
     });
     
+    // appending values from paymentForm to paymentTable
+    it('should payment update #paymentTable on appendPaymentTable()', function () {
+      let expectedPayment = createCurPayment();
+      allPayments['payment1'] = expectedPayment;
+  
+      appendPaymentTable(expectedPayment);
+  
+      let curTdList = document.querySelectorAll('#paymentTable tbody tr td');
+  
+      expect(curTdList.length).toEqual(3);
+      expect(curTdList[0].innerText).toEqual('$50');
+      expect(curTdList[1].innerText).toEqual('$10');
+      expect(curTdList[2].innerText).toEqual('%20');
+    });
 
-
-    it("should not add a new payment on submitPyamentInfo() with empty input", function() {
+    it("should not add a new payment on submitPaymentInfo() with empty input", function() {
       //when submitting an empty value of billAmt in payment form
       billAmtInput.value = '';
       submitPaymentInfo();
@@ -34,7 +47,7 @@ describe("Payments test (with setup and tear-down)", function() {
       expect(Object.keys(allPayments).length).toEqual(0);
     });
 
-    it("should not create payment on createCurPyament() with empty inputs", function() {
+    it("should not create payment on createCurPayment() with empty inputs", function() {
       //when submitting an empty value of billAmt & tipAmt in payment form
       billAmtInput.value = '';
       tipAmtInput.value = '';
