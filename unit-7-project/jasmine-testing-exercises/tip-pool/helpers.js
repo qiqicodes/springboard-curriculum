@@ -25,23 +25,23 @@ function appendTd(tr, value) {
   tr.append(newTd);
 }
 
-// // create delete button in table
-// function appendDeleteBtn(tr) {
-//   let newTd = document.createElement('td');
-//   newTd.className = 'deleteBtn';
-//   newTd.innerText = "X";
+// create delete button in table
+function appendDeleteBtn(tr, type) {
+  let newTd = document.createElement('td');
+  newTd.className = 'deleteBtn';
+  newTd.innerText = "X";
 
-//   newTd.addEventListener('click', removeRow);
+  newTd.addEventListener('click', removeRow);
 
-//   tr.append(newTd);
-// }
+  tr.append(newTd);
+}
 
-// function removeRow(e) {
-//   let row = e.target.closest('tr');
+function removeRow(e) {
+  let row = e.target.parentElement;
 
-//   delete allServers[row.id];
+  delete allServers[row.id];
 
-//   row.parentNode.removeChild(row);
-//   updateServerTable();
+  row.parentElement.removeChild(row);
+  updateServerTable();
 
-// }
+}

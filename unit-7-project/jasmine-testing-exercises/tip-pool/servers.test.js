@@ -32,10 +32,10 @@ it("update #servertable when running updateServerTable()", function() {
  //check the current #serverTable
  let curTdList = document.querySelectorAll("#serverTable tbody tr td");
  // three tests has run so far, the table should have 3 submits
-  expect(curTdList.length).toEqual(2);
+  expect(curTdList.length).toEqual(3);
   expect(curTdList[0].innerText).toEqual("Alice");
   expect(curTdList[1].innerText).toEqual("$0.00");
-  // expect(curTdList[2].innerText).toEqual("X");
+  expect(curTdList[2].innerText).toEqual("X");
 });
 
   afterEach(function() {
