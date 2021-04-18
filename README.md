@@ -2,53 +2,53 @@
 
 **Unit 4 Projects**
 
-- [ ] mouse mapping color change
+- [x] mouse mapping color change
 - [ ] todo app
 - [ ] memory game app
 
 **Unit 5 Assessment** - not shown in this repo
 
-- [ ] meme generator
+- [x] meme generator
 
 **Unit 7 Projects**
 
-- [ ] calculator testing
-- [ ] tip pool testing
+- [x] calculator testing
+- [x] tip pool testing
 
 **Unit 8 Projects**
 
-- [ ] js array methods - find/findIndex
-- [ ] js array methods - some/every
-- [ ] js array methods - forEach/map/filter
-- [ ] js array methods - reduce
+- [x] js array methods - find/findIndex
+- [x] js array methods - some/every
+- [x] js array methods - forEach/map/filter
+- [x] js array methods - reduce
 
 **Unit 10 Projects**
 
-- [ ] ES2015 - let/const
-- [ ] ES2015 - arrow functions
-- [ ] ES2015 - rest/spread operator
-- [ ] ES2015 - Object enhancements
-- [ ] ES2015 - destructuring
-- [ ] ES2015 - Map/Set
+- [x] ES2015 - let/const
+- [x] ES2015 - arrow functions
+- [x] ES2015 - rest/spread operator
+- [x] ES2015 - Object enhancements
+- [x] ES2015 - destructuring
+- [x] ES2015 - Map/Set
 
 **Unit 11 Projects**
 
-- [ ] connect 4
+- [x] connect 4
 
 **Unit 12 Projects**
 
-- [ ] car oop
-- [ ] connect 4 - oop
+- [x] car oop
+- [x] connect 4 - oop
 
 **Unit 13 Projects**
 
-- [ ] jQuery exercise
-- [ ] jQuery movie app
+- [x] jQuery exercise
+- [x] jQuery movie app
 - [ ] bootstrap mocks
 
 **Unit 14 Projects**
 
-- [ ] how web works exercise
+- [x] how web works exercise
 - [ ] giphy party
 - [ ] AJAX and API exercise - TV Maze
 
@@ -62,9 +62,9 @@
 
 **Unit 18 Projects**
 
-- [ ] python syntax
-- [ ] python data structure
-- [ ] python oop
+- [x] python syntax
+- [x] python data structure
+- [x] python oop
 
 **Unit 19 Projects**
 
@@ -97,7 +97,6 @@
 
 - [ ] database dj
 
-
 **Unit 26 Projects**
 
 - [ ] twitter Clone
@@ -120,7 +119,7 @@
 
 **Unit 39 Projects**
 
-- [ ] react fundamentals
+- [x] react fundamentals
 - [ ] ES2015 module exercise
 - [ ] react props - pokedex
 - [ ] react state - eight ball
