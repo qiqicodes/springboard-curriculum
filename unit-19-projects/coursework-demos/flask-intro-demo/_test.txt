@@ -1,0 +1,15 @@
+Test server file
+	>>> from server import app
+	>>> client = app.test_client()
+
+Test showing the form
+	>>> r = client.get('/form')
+	>>> assert "<h1>Hi There!</h1>" in r.data
+
+Test form processing
+	>>> r = client.get('/greet', query_string={'person': 'Lisa Simpson'})
+	>>> assert "Lisa Simpson" in r.data
+
+Test passing values in route
+	>>> r = client.get('/user/Ramona')
+	>>> assert "Ramona" in r.data
