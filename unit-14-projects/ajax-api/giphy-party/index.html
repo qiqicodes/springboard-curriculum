@@ -4,19 +4,41 @@
 <head>
   <meta charset="UTF-8">
   <title>Giphy Party!</title>
+  <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+  integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+  crossorigin="anonymous"
+/>
 </head>
 
-<body>
-  <h1>GIPHY PARTY</h1> 
-  <form action="" class="giphy">
-    <input type="text" id="search-content"/>
-    <input type="submit" value="Search Giphy"/>
-    <button id="remove-all-content">Remove Images</button>
-  </form>
-  <div id="gif-display"></div>
-<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
-<script src="https://unpkg.com/axios/dist/axios.js"></script>
-<script src="app.js"></script>
+<body class="bg-dark">
+  <div class="container">
+    <h1 class="text-center m-4 text-white">GIPHY PARTY</h1> 
+    <form class="form-inline justify-content-center" action="" class="giphy">
+      <input type="text" id="search-content" placeholder="Enter a search term" class="form-control mr-3"/>
+      <input class="btn btn-secondary" type="submit" value="Search Giphy"/>
+      <button class="btn btn-danger ml-3"  id="remove-all-content">Remove Images</button>
+    </form>
+    <hr>
+    <div id="gif-display" class="row">
+      <div class="col-lg-4 col-12 mt-3 mb-3">
+        <img class="w-100" src="https://picsum.photos/200/300" alt="" >
+      </div>
+      <div class="col-lg-4 col-12 mt-3 mb-3">
+        <img class="w-100" src="https://picsum.photos/200/300" alt="">
+      </div>
+      <div class="col-lg-4 col-12 mt-3 mb-3">
+        <img class="w-100" src="https://picsum.photos/200/300" alt="" >
+      </div>
+    </div>
+
+  </div>
+
+
+  <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.js"></script>
+  <script src="app.js"></script>  
 </body>
 
 </html>
