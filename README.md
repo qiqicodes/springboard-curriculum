@@ -44,7 +44,7 @@
 
 - [x] jQuery exercise
 - [x] jQuery movie app
-- [ ] bootstrap mocks
+- [x] bootstrap mocks
 
 **Unit 14 Projects**
 
