@@ -1,0 +1,29 @@
+.Pokedex {
+  position: absolute;
+  width: 50%;
+  height: auto;
+  background-image: url("./Pokedex_Background.png");
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  margin: auto;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.Pokedex-title {
+  color: #222224;
+  font-size: 3em;
+}
+
+.Pokedex-cards {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
