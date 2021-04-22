@@ -1,0 +1,14 @@
+.resetBtn {
+  position: relative;
+  padding: 10px;
+  background-color: rgb(250, 129, 37);
+  display: inline-block;
+  margin: 10px;
+  outline: none;
+  border: none;
+  font-size: 1em;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+}

@@ -1,28 +1,38 @@
 import React, { useState } from "react";
 import "../assets/EightBall.css";
 
-// onClick{() => setChange{ramdomize default props. msg=prop.msg, color=prop.color}}
-
 //randomize answers fucntion, 1. random indexing 2. output array item
-const random = (array) => {
-  const randomIndex = Math.floor(Math.random * array.length);
-  return arr[randomIndex];
+const randomize = (array) => {
+  const randomIndex = Math.floor(Math.random() * array.length);
+  return array[randomIndex];
 };
 
 const EightBall = (props) => {
   // init state: “Think of a Question” bg-color: black
-  const [msg, setMsg] = useState("Think of a Question");
+  const [msg, setMsg] = useState("Think of a Question.");
   const [color, setColor] = useState("black");
 
+  // better as an abstraction: onClick{() => setChange{ramdomize default props. msg=prop.msg, color=prop.color}}
+  function handleClick() {
+    const { msg, color } = randomize(props.answers);
+    setMsg(msg);
+    setColor(color);
+  }
+
+
   return (
-    <div className="EightBall">
-        <h3>{ msg }</h3>
+    <div
+      className="EightBall"
+      onClick={ handleClick }
+      style={{ backgroundColor: color }}
+    >
+      <h3>{msg}</h3>
     </div>
   );
 };
 
 EightBall.defaultProps = {
-  answer: [
+  answers: [
     { msg: "It is certain.", color: "green" },
     { msg: "It is decidedly so.", color: "green" },
     { msg: "Without a doubt.", color: "green" },
