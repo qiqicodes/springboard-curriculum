@@ -1,0 +1,63 @@
+body {
+  color: black;
+  text-align: center;
+  background-image: url(http://printstationary.net/stationaryletterhead/images/bgf2.jpg);
+  width: 100%;
+  background-position: center;
+  background-size: cover;
+  font-family: "VT323", monospace;
+}
+
+h1 {
+  font-size: 4em;
+  color: orange;
+}
+
+.container {
+  text-align: center;
+  display: inline-block;
+  flex-direction: column;
+}
+
+input {
+  align-self: auto;
+  color: #333;
+  width: 30%;
+  height: 20%;
+  margin: auto;
+  position: relative;
+  justify-content: center;
+  padding: 0.5em;
+
+  transition: box-shadow 320ms;
+
+  box-shadow: 0px 0px 8px 10px rgba(0, 0, 0, 0.1);
+
+  border-radius: 3px;
+  font-size: 1.25em;
+  border: 0px;
+}
+input :focus {
+  outline: 0px;
+  outline-offset: 0px;
+  box-shadow: 0px 0px 1px 5px rgba(0, 0, 0, 0.12);
+}
+
+input:-moz-placeholder {
+  color: #cccccc;
+}
+
+button {
+  align-self: auto;
+  border-radius: 3px;
+  border: 0;
+  outline: 0;
+  color: #fff;
+  background: #000;
+
+  font-size: 1.5em;
+  text-transform: uppercase;
+  padding: 0.08em 0.8em;
+  margin: 1em;
+  cursor: pointer;
+}
