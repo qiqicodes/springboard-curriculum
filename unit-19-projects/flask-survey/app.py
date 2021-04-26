@@ -1,14 +1,14 @@
-from flask import Flask, request, render_template, redirect, flash, jsonify
+from flask import Flask, request, render_template, redirect, flash, jsonify, session, make_response
 from flask_debugtoolbar import DebugToolbarExtension
 from surveys import satisfaction_survey as survey
+
+RESPONSES_LIST = "responses"
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "fufu123"
 app.config["DEBUG_TB_INTERCEPT_REDIRECTS"] = False
 
 debug = DebugToolbarExtension(app)
-
-responses = []
 
 
 @app.route('/')
@@ -18,12 +18,15 @@ def show_start_page():
 
 @app.route('/start', methods=["POST"])
 def start_survey():
-    """Directs user to first question page"""
+    """Directs user to first question page, clear the session of user responses"""
+    session[RESPONSES_LIST] = []
     return redirect("/questions/0")
 
 @app.route("/questions/<int:question_id>")
 def show_question(question_id):
     """Show current question"""
+    responses = session.get(RESPONSES_LIST)
+
     # trying to access question page before the response list is initiated
     if (responses is None):
         return redirect("/")
@@ -48,8 +51,9 @@ def handle_answer():
     choice = request.form["answer"]
 
     # add to responses list
+    responses = session[RESPONSES_LIST]
     responses.append(choice)
-    
+    session[RESPONSES_LIST] = responses
 
     if (len(responses) == len(survey.questions)):
     # They've answered all the questions! Thank them.
