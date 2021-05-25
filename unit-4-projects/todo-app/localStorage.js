@@ -1,48 +1,98 @@
-const todoForm = document.getElementById("newTodoForm");
-const todoList = document.getElementById("todoList");
+document.addEventListener("DOMContentLoaded", function() {
+  const todoForm = document.getElementById('newTodo');
+  const todoInput = document.getElementById("newTodoTask");
+  const todoList = document.getElementById("todoList");
 
-// retrieve from localStorage
-const savedTodos = JSON.parse(localStorage.getItem("todos")) || [];
-for (let i = 0; i < savedTodos.length; i++) {
-  let newTodo = document.createElement("li");
-  newTodo.innerText = savedTodos[i].task;
-  newTodo.isCompleted = savedTodos[i].isCompleted ? true : false;
-  if (newTodo.isCompleted) {
-    newTodo.style.textDecoration = "line-through";
-  }
-  todoList.appendChild(newTodo);
-}
 
-todoForm.addEventListener("submit", function(event) {
-  event.preventDefault();
-  let newTodo = document.createElement("li");
-  let taskValue = document.getElementById("task").value;
-  newTodo.innerText = taskValue;
-  newTodo.isCompleted = false;
-  todoForm.reset();
-  todoList.appendChild(newTodo);
+  // array which stores every todos
+  let todos = [];
 
-  // save to localStorage
-  savedTodos.push({ task: newTodo.innerText, isCompleted: false });
-  localStorage.setItem("todos", JSON.stringify(savedTodos));
-});
+  // add an eventListener on form, and listen for submit event
+  todoForm.addEventListener('submit', function(event) {
+    event.preventDefault();
+    addTodo(todoInput.value); 
+  });
 
-todoList.addEventListener("click", function(event) {
-  let clickedListItem = event.target;
+  function addTodo(item) {
+    if (item !== '') {
+      const todo = {
+        id: Date.now(),
+        name: item,
+        completed: false
+      };
 
-  if (!clickedListItem.isCompleted) {
-    clickedListItem.style.textDecoration = "line-through";
-    clickedListItem.isCompleted = true;
-  } else {
-    clickedListItem.style.textDecoration = "none";
-    clickedListItem.isCompleted = false;
-  }
+      todos.push(todo);
+      addToLocalStorage(todos);
 
-  // breaks for duplicates - another option is to have dynamic IDs
-  for (let i = 0; i < savedTodos.length; i++) {
-    if (savedTodos[i].task === clickedListItem.innerText) {
-      savedTodos[i].style.textDecoration = "line-through";
-      localStorage.setItem("todos", JSON.stringify(savedTodos));
+      todoInput.value = '';
     }
   }
+
+  function renderTodos(todos) {
+    todoList.innerHTML = '';
+
+    todos.forEach(function(item) {
+      const li = document.createElement('li');
+      li.setAttribute('data-key', item.id);
+      console.log(li)
+      li.style.textDecoration = item.completed ? "line-through orangered": "";
+
+      li.innerHTML = `
+        ${item.name}
+        <button class="delete-button">X</button>
+      `;
+
+      todoList.append(li);
+    });
+
+  }
+
+  function addToLocalStorage(todos) {
+    localStorage.setItem('todos', JSON.stringify(todos));
+
+    renderTodos(todos);
+  }
+
+  function getFromLocalStorage() {
+    const reference = localStorage.getItem('todos');
+    if (reference) {
+      todos = JSON.parse(reference);
+      renderTodos(todos);
+    }
+  }
+
+  function toggle(id) {
+    todos.forEach(function(item) {
+      if (item.id == id) {
+        item.completed = !item.completed;
+        // console.log(item)
+        const currentLi = document.querySelector(`[data-key="${id}"]`)
+        // console.log(currentLi)
+        currentLi.style.textDecoration = item.completed ? "line-through orangered": "";
+        }
+    });
+
+    addToLocalStorage(todos);
+  }
+
+  function deleteTodo(id) {
+    todos = todos.filter(function(item) {
+          return item.id != id;
+    });
+
+    addToLocalStorage(todos);
+  }
+
+  getFromLocalStorage();
+
+
+  todoList.addEventListener("click", function(event) {
+    const targetTagToLowerCase = event.target.tagName.toLowerCase();
+    if (targetTagToLowerCase === "li") {
+      toggle(event.target.getAttribute('data-key'));
+    } else if (targetTagToLowerCase === "button") {
+      deleteTodo(event.target.parentElement.getAttribute('data-key'));
+      event.target.parentNode.remove();
+    }
+  });
 });

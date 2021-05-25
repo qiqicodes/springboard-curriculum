@@ -1,9 +1,3 @@
-// Build an application that uses jQuery to do the following:
-
-
-// 4. Allow users to sort alphabetically by the title of the movie
-//     or by the rating of the movie from lowest to highest and vice versa.
-
 let currentId = 0;
 let movieList = [];
 
@@ -59,3 +53,41 @@ $("body").on("click", ".btn-warning", function (event) {
   // console.log(movieList);
   $(event.target).closest("tr").remove();
 });
+
+//toggle arrow and append sorted list
+// $(".fas").on("click", function(event){
+//     let direction = $(event.target).hasClass("fa-sort-up") ? "up" : "down";
+//     let movieId = $(event.target).attr("id");
+//     let sortedMovies = sortMovie(movieList, movieId, direction)
+
+//     $("#tableBody").empty()
+
+//     for (let movie of sortedMovies) {
+//         const newMovie = appendMovieData(movie);
+//         $("#tableBody").append(newMovie);
+//     }
+
+//     $(event.target).toggleClass("fa-sort-up");
+//     $(event.target).toggleClass("fa-sort-down");
+// })
+
+// Sort movies alphabetically
+
+
+// Sort movies by the rating 
+
+// function sortMovie(movieList, id, arrowDirection) {
+//     return movieList.sort(function(a, b) {
+//         // since rating is a number, we have to convert these strings to numbers
+//         if (id === "rating") {
+//           a[id] = +a[id];
+//           b[id] = +b[id];
+//         }
+//         if (a[id] > b[id]) {
+//           return arrowDirection === "up" ? 1 : -1;
+//         } else if (b[id] > a[id]) {
+//           return arrowDirection === "up" ? -1 : 1;
+//         }
+//         return 0;
+//       });
+// }
