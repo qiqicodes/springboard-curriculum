@@ -1,4 +1,8 @@
 const gameContainer = document.getElementById("game");
+let card1,
+  card2,
+  flippedCard = 0,
+  preventClick = false;
 
 const COLORS = [
   "red",
@@ -10,7 +14,9 @@ const COLORS = [
   "blue",
   "green",
   "orange",
-  "purple"
+  "purple",
+  "gold",
+  "gold",
 ];
 
 // here is a helper function to shuffle an array
@@ -53,6 +59,7 @@ function createDivsForColors(colorArray) {
     newDiv.addEventListener("click", handleCardClick);
 
     // append the div to the element with an id of game
+
     gameContainer.append(newDiv);
   }
 }
@@ -61,6 +68,46 @@ function createDivsForColors(colorArray) {
 function handleCardClick(event) {
   // you can use event.target to see which element was clicked
   console.log("you just clicked", event.target);
+
+  if (preventClick) return;
+  if (event.target.classList.contains("flipped")) return;
+
+  let currentCard = event.target;
+  currentCard.style.backgroundColor = currentCard.classList[0];
+
+  if (!card1 || !card2) {
+    currentCard.classList.add("flipped");
+    card1 = card1 || currentCard;
+    card2 = currentCard === card1 ? null : currentCard;
+  }
+
+  if (card1 && card2) {
+    preventClick = true;
+    // debugger
+    let flip1 = card1.className;
+    let flip2 = card2.className;
+
+    if (flip1 === flip2) {
+      flippedCard += 2;
+      card1.removeEventListener("click", handleCardClick);
+      card2.removeEventListener("click", handleCardClick);
+      card1 = null;
+      card2 = null;
+      preventClick = false;
+    } else {
+      setTimeout(function () {
+        card1.style.backgroundColor = "";
+        card2.style.backgroundColor = "";
+        card1.classList.remove("flipped");
+        card2.classList.remove("flipped");
+        card1 = null;
+        card2 = null;
+        preventClick = false;
+      }, 1000);
+    }
+  }
+
+  if (flippedCard === COLORS.length) alert("Game Over!");
 }
 
 // when the DOM loads
