@@ -58,6 +58,7 @@ class BoggleGame {
 
     if (this.words.has(word)) {
       this.showMessage(`Already found ${word}`);
+      wordSubmit.value = "";
       return;
     }
 
