@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Boggle</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <section id="boggle">
+      <h1>Boggle</h1>
+      <p>Find as many words as you can in a minute</p>
+      <p id="msg" style="min-height: 1.25em; color: salmon"></p>
+      <form action="" method="post" id="add-word">
+        <input
+          type="text"
+          name="word"
+          id="word"
+          placeholder="Type here..."
+          minlength="3"
+          autofocus
+        />
+        <input type="submit" value="Enter" />
+      </form>
+    </section>
+    <div class="center">
+      <section class="leftside">
+        <table id="board">
+          <tbody>
+            {% for row in board %}
+            <tr>
+              {% for cell in row %}
+              <td>{{ cell }}</td>
+              {% endfor %}
+            </tr>
+          </tbody>
+          {% endfor %}
+        </table>
+      </section>
+      <section class="rightside">
+        <section class="righttop">
+          <p>High Score: &ensp; {{highscore}}</p>
+          <!-- in {{numberofplays}} plays -->
+
+          <p>Score: &ensp; <b id="score"></b></p>
+
+          <p>Seconds Left: &ensp; <b id="timer"></b></p>
+        </section>
+        <hr />
+        <section class="rightbot">
+          <ul id="words">
+            Found Words
+          </ul>
+        </section>
+      </section>
+    </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/static/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,101 @@
+body {
+  font-family: "Gill Sans", sans-serif;
+  margin: auto;
+  text-align: center;
+}
+
+h1 {
+  font-size: 2.5em;
+}
+p {
+  font-size: 1.5em;
+}
+table,
+td,
+th {
+  font-size: 1.5em;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+  border: 2px solid rgb(11, 112, 50);
+  border-radius: 5px;
+  background-color: #fcfcfc;
+  text-align: center;
+}
+
+input[type="text"] {
+  border: 3px solid rgb(11, 112, 50);
+  margin: 1em 1em 2em 0;
+  padding: 20px;
+  border-radius: 1.5em;
+  box-sizing: border-box;
+  font-size: 1.5em;
+  text-align: center;
+}
+
+input[type="submit"] {
+  box-shadow: inset 0px 0px 17px -7px #f7c5c0;
+  background: linear-gradient(to bottom, #fc8d83 5%, #e4685d 100%);
+  background-color: #fc8d83;
+  border-radius: 9px;
+  border: 1px solid #d83526;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 1.5em;
+  font-weight: bold;
+  padding: 14px 22px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #b23e35;
+}
+
+input[type="submit"]:hover {
+  background: linear-gradient(to bottom, #e4685d 5%, #fc8d83 100%);
+  background-color: #e4685d;
+}
+input[type="submit"]:active {
+  position: relative;
+  top: 1px;
+}
+
+.center {
+  display: flex;
+  text-align: left;
+  margin: auto;
+  width: 60%;
+}
+
+@media (max-width: 1300px) {
+  .center {
+    width: 100%;
+  }
+}
+.leftside,
+.rightside {
+  flex: 50%;
+  padding: 1em;
+}
+.leftside {
+  margin-left: 2em;
+}
+.rightside {
+  margin-right: 2em;
+}
+
+.righttop {
+  color: salmon;
+}
+.rightbot {
+  color: rgb(11, 112, 50);
+  font-size: 1.5em;
+}
+ul {
+  text-align: center;
+  list-style-type: none;
+}
+li {
+  text-align: left;
+}
+#score {
+  margin-left: 2em;
+}
