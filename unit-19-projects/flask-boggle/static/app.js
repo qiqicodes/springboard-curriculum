@@ -28,7 +28,6 @@ class BoggleGame {
 
   showWord(word) {
     const wordList = document.getElementById("words");
-    console.log();
     const newWord = document.createElement("li");
     newWord.innerText = word;
     wordList.append(newWord);
