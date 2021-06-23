@@ -1,0 +1,13 @@
+{% extends 'base.html' %} {% block content %}
+
+<h1>Add a Pet</h1>
+
+<div class="container">
+  <div class="row justify-content-lg-center">
+    <form method="POST">
+      {% include "form.html" %}
+      <button class="btn btn-primary">Add</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

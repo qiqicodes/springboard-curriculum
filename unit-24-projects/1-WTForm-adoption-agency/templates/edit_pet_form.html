@@ -1,0 +1,21 @@
+{% extends 'base.html' %} {% block content %}
+
+<h1>{{ pet.name }}'s Profile</h1>
+
+{% if pet.photo_url %}
+<img
+  class="img-fluid"
+  style="max-height: 300px"
+  src="{{ pet.photo_url }}"
+  alt="{{ pet.species }}"
+/>
+{% endif %}
+<div class="container">
+  <div class="row justify-content-lg-center">
+    <form method="POST">
+      {% include "form.html" %}
+      <button class="btn btn-primary">Update</button>
+    </form>
+  </div>
+</div>
+{% endblock %}
