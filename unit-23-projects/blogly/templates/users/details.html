@@ -1,0 +1,47 @@
+{% extends 'base.html' %} {% block title %}{{ user.full_name }}{% endblock %}}
+{% block content %}
+
+<div class="row">
+  {% if user.image_url %}
+  <div class="col-4">
+    <img
+      class="m-4"
+      style="max-width: 500px"
+      src="{{ user.image_url }}"
+      alt="{{ user.get_full_name}}"
+    />
+  </div>
+  {% endif %} {% if not user.image_url %}
+  <div class="col-4">
+    <img
+      class="m-4"
+      style="max-width: 500px"
+      src="https://www.hilomedicalcenter.org/wp-content/uploads/2019/01/persontwo.png"
+      alt="{{ user.get_full_name}}"
+    />
+  </div>
+  {% endif %}
+
+  <div class="my-4 col-8">
+    <h1>{{ user.get_full_name }}</h1>
+    <form>
+      <button
+        class="btn btn-primary"
+        style="min-width: 150px"
+        formaction="/users/{{ user.id }}/edit"
+        formmethod="GET"
+      >
+        Edit
+      </button>
+      <button
+        class="btn btn-warning"
+        style="min-width: 150px"
+        formaction="/users/{{ user.id }}/delete"
+        formmethod="POST"
+      >
+        Delete
+      </button>
+    </form>
+  </div>
+</div>
+{% endblock %}
