@@ -38,7 +38,6 @@ def show_add_user_form():
 
     return render_template('/users/new.html')
 
-#TODO: fix session.commit
 @app.route('/users/new', methods=["POST"])
 def add_user():
     '''Add user to database'''
