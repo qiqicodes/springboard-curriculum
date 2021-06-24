@@ -1,0 +1,37 @@
+{% extends 'base.html' %} {% block title %}{{ post.title }}{% endblock %}}
+{% block content %}
+
+
+  <div class="my-4 col-8">
+    <h1>{{ post.title }}</h1>
+    <p class="m-4 py-4 px-5 text-left border border-info rounded-sm" style="min-height: 500px;">{{ post.content }}</p>
+    <small>By {{ post.user.get_full_name }} on {{ post.friendly_date }}</small>
+    <form class="m-4">
+        <button
+        class="btn btn-outline-info"
+        style="min-width: 150px"
+        formaction="/users/{{ post.user.id }}"
+        formmethod="GET"
+      >
+        Back to Profile
+      </button>
+      <button
+        class="btn btn-primary"
+        style="min-width: 150px"
+        formaction="/posts/{{ post.id }}/edit"
+        formmethod="GET"
+      >
+        Edit
+      </button>
+      <button
+        class="btn btn-warning"
+        style="min-width: 150px"
+        formaction="/posts/{{ post.id }}/delete"
+        formmethod="POST"
+      >
+        Delete
+      </button>
+    </form>
+  </div>
+</div>
+{% endblock %}

@@ -3,10 +3,10 @@
 
 <h1>Happiness Blog Users</h1>
 
-<ul>
+<ul class="list-unstyled">
   {% for user in users%}
   <li>
-    <a href="/users/{{ user.id}}">{{ user.get_full_name }}</a>
+    <a href="/users/{{ user.id }}">{{ user.get_full_name }}</a>
   </li>
   {% endfor %}
 </ul>

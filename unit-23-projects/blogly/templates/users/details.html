@@ -24,7 +24,7 @@
 
   <div class="my-4 col-8">
     <h1>{{ user.get_full_name }}</h1>
-    <form>
+    <form class="m-4">
       <button
         class="btn btn-primary"
         style="min-width: 150px"
@@ -40,6 +40,25 @@
         formmethod="POST"
       >
         Delete
+      </button>
+    </form>
+    <hr />
+    <h2 class="my-4">Posts</h2>
+    <ul class="list-unstyled">
+      {% for post in user.posts %}
+      <li>
+        <a href="/posts/{{ post.id}}">{{ post.title }}</a>
+      </li>
+      {% endfor %}
+    </ul>
+    <form>
+      <button
+        class="btn btn-primary"
+        style="min-width: 200px"
+        formaction="/users/{{ user.id }}/posts/new"
+        formmethod="GET"
+      >
+        Add Post
       </button>
     </form>
   </div>
