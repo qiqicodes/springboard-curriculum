@@ -1,7 +1,9 @@
 body {
   font-family: "Quicksand", sans-serif;
-  display: flex;
-  justify-content: center;
   font-size: 2em;
   text-align: center;
+}
+
+.input-lg {
+  font-size: 1em;
 }

@@ -6,21 +6,26 @@ content %}
 <div class="m-4 align-left"></div>
 <form method="post">
   <div class="form-group row">
-    <label for="title" class="control-label">Title</label>
+    <label for="title" class="control-label text-white bg-info px-5 py-2"
+      >Title</label
+    >
     <input
       type="text"
-      class="form-control"
+      class="form-control input-lg"
       id="title"
       name="title"
       value="{{ post.title }}"
+      autofocus
     />
   </div>
   <div class="form-group row">
-    <label for="content" class="control-label">Post Content</label>
+    <label for="content" class="control-label text-white bg-info px-5 py-2"
+      >Post Content</label
+    >
 
     <textarea
       type="text"
-      class="form-control"
+      class="form-control input-lg"
       id="content"
       name="content"
       style="min-height: 500px"
@@ -29,11 +34,37 @@ content %}
     >
   </div>
 
+  <div class="form-checkbox text-left">
+    <b class="text-white bg-info px-5 py-2">Tags </b>
+    {% for tag in tags %}
+    <div>
+      <input
+        class="form-check-input"
+        type="checkbox"
+        id="tag_{{ tag.id}}"
+        {%
+        if
+        tag
+        in
+        post.tags
+        %}
+        checked
+        {%
+        endif
+        %}
+        value="{{ tag.id }}"
+        name="tags"
+      />
+      <label class="form-check-label" for="tag_{{ tag.id}}"
+        >{{ tag.name }}</label
+      >
+    </div>
+    {% endfor %}
+  </div>
+
   <div class="form-group row">
     <div class="m-auto">
-      <a href="/users/{{ post.user_id }}" class="btn btn-outline-info"
-        >Cancel</a
-      >
+      <a href="/posts/{{ post.id }}" class="btn btn-outline-info">Cancel</a>
       <button type="submit" class="btn btn-success" style="min-width: 200px">
         Save
       </button>

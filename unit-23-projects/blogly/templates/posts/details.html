@@ -6,6 +6,14 @@
     <h1>{{ post.title }}</h1>
     <p class="m-4 py-4 px-5 text-left border border-info rounded-sm" style="min-height: 500px;">{{ post.content }}</p>
     <small>By {{ post.user.get_full_name }} on {{ post.friendly_date }}</small>
+
+    <p>Tags:  
+      <!-- <span class="badge badge-primary"> sample</span> -->
+      {% for tag in post.tags %} 
+        <span class="badge badge-info px-3 py-2">
+          {{ tag.name}}
+        </span>
+      {% endfor %}</p>
     <form class="m-4">
         <button
         class="btn btn-outline-info"

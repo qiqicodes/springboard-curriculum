@@ -9,10 +9,11 @@ block content %}
     <label for="first_name" class="control-label">First Name</label>
     <input
       type="text"
-      class="form-control"
+      class="form-control input-lg"
       id="first_name"
       name="first_name"
       value="{{ user.first_name }}"
+      autofocus
     />
   </div>
   <div class="form-group row">
@@ -20,7 +21,7 @@ block content %}
 
     <input
       type="text"
-      class="form-control"
+      class="form-control input-lg"
       id="last_name"
       name="last_name"
       value="{{ user.last_name }}"
@@ -31,7 +32,7 @@ block content %}
 
     <input
       type="text"
-      class="form-control"
+      class="form-control input-lg"
       id="image_url"
       name="image_url"
       value="{{ user.image_url }}"

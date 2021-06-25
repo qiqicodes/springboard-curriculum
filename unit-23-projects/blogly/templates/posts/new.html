@@ -3,23 +3,51 @@ endblock %} {% block content %}
 
 <h1>Add Post for {{ user.get_full_name }}</h1>
 
-<div class="m-4 align-left"></div>
+<!-- <div class="m-4 align-left"> -->
 <form method="POST">
   <div class="form-group row">
-    <label for="title" class="control-label">Title</label>
-    <input type="text" class="form-control" id="title" name="title" />
+    <label for="title" class="control-label text-white bg-info px-5 py-2"
+      >Title</label
+    >
+    <input
+      type="text"
+      class="form-control input-lg"
+      id="title"
+      name="title"
+      autofocus
+    />
   </div>
   <div class="form-group row">
-    <label for="content" class="control-label">Content</label>
+    <label for="content" class="control-label text-white bg-info px-5 py-2"
+      >Content</label
+    >
 
     <textarea
       type="text"
-      class="form-control"
+      class="form-control input-lg"
       id="content"
       name="content"
+      style="min-height: 400px"
     ></textarea>
   </div>
 
+  <div class="form-checkbox text-left">
+    <b class="text-white bg-info px-5 py-2">Tags</b>{% for tag in tags %}
+    <div>
+      <input
+        class="form-check-input align-left"
+        type="checkbox"
+        id="tag_{{ tag.id}}"
+        value="{{ tag.id }}"
+        name="tags"
+      />
+      <label class="form-check-label" for="tag_{{ tag.id}}"
+        >{{ tag.name }}</label
+      >
+    </div>
+    {% endfor %}
+  </div>
+  <!-- </div> -->
   <div class="form-group row">
     <div class="m-auto">
       <a href="/users/{{ user.id }}" class="btn btn-outline-info">Cancel</a>
