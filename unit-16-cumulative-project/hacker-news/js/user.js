@@ -107,6 +107,11 @@ function saveUserCredentialsInLocalStorage() {
  * - generate the user profile part of the page
  */
 
+// TODO: fix this to
+// 1. hide irrelevant information ie. hidePageComponents()
+// 2. re-display the stories with favorite stars
+// 3. generateUserProfile()
+
 function updateUIOnUserLogin() {
   console.debug("updateUIOnUserLogin");
 
@@ -114,3 +119,11 @@ function updateUIOnUserLogin() {
 
   updateNavOnLogin();
 }
+
+// TODO: Generate User Profile
+
+const generateUserProfile = () => {
+  console.debug("generateUserProfile");
+
+  // do something
+};

@@ -2,6 +2,7 @@
 
 // So we don't have to keep re-finding things on page, find DOM elements once:
 
+// TODO: assign all elements to jQuery
 const $body = $("body");
 
 const $storiesLoadingMsg = $("#stories-loading-msg");
@@ -19,13 +20,10 @@ const $navLogOut = $("#nav-logout");
  * calling this, individual components can re-show just what they want.
  */
 
+// TODO: hide all the components when signed in
 function hidePageComponents() {
-  const components = [
-    $allStoriesList,
-    $loginForm,
-    $signupForm,
-  ];
-  components.forEach(c => c.hide());
+  const components = [$allStoriesList, $loginForm, $signupForm];
+  components.forEach((c) => c.hide());
 }
 
 /** Overall function to kick off the app. */
@@ -43,8 +41,10 @@ async function start() {
 
 // Once the DOM is entirely loaded, begin the app
 
-console.warn("HEY STUDENT: This program sends many debug messages to" +
-  " the console. If you don't see the message 'start' below this, you're not" +
-  " seeing those helpful debug messages. In your browser console, click on" +
-  " menu 'Default Levels' and add Verbose");
+console.warn(
+  "HEY STUDENT: This program sends many debug messages to" +
+    " the console. If you don't see the message 'start' below this, you're not" +
+    " seeing those helpful debug messages. In your browser console, click on" +
+    " menu 'Default Levels' and add Verbose"
+);
 $(start);

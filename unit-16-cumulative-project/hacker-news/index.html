@@ -13,98 +13,141 @@
   -->
 
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Hack or Snooze</title>
-  <link
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Hack or Snooze</title>
+    <link
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
       integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
-      crossorigin="anonymous">
-  <link rel="stylesheet" href="css/site.css">
-  <link rel="stylesheet" href="css/user.css">
-  <link rel="stylesheet" href="css/stories.css">
-  <link rel="stylesheet" href="css/nav.css">
-</head>
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/site.css" />
+    <link rel="stylesheet" href="css/user.css" />
+    <link rel="stylesheet" href="css/stories.css" />
+    <link rel="stylesheet" href="css/nav.css" />
+  </head>
 
-<body>
+  <body>
+    <!-- top navigation bar -->
+    <nav>
+      <div class="navbar-brand">
+        <a class="nav-link" href="#" id="nav-all">Hack or Snooze</a>
+      </div>
+      <!-- TODO: add nav link to 'submit', 'favorite', 'my stories' -->
 
-<!-- top navigation bar -->
-<nav>
-  <div class="navbar-brand">
-    <a class="nav-link" href="#" id="nav-all">Hack or Snooze</a>
-  </div>
-  <div class="nav-right">
-    <a class="nav-link" href="#" id="nav-login">login/signup</a>
-    <a class="nav-link" href="#" id="nav-user-profile"></a>
-    <a class="hidden" id="nav-logout" href="#"><small>(logout)</small></a>
-  </div>
-</nav>
+      <div class="nav-right">
+        <a class="nav-link" href="#" id="nav-login">login/signup</a>
+        <a class="nav-link" href="#" id="nav-user-profile"></a>
+        <a class="hidden" id="nav-logout" href="#"><small>(logout)</small></a>
+      </div>
+    </nav>
 
-<!-- area for stories (all stories, user stories, favorites) -->
-<section class="stories-container container">
+    <!-- area for stories (all stories, user stories, favorites) -->
+    <section class="stories-container container">
+      <!-- TODO: create addstory form -->
+      <form id="submit-story-form">
+        <div class="">
+          <label for="new-author">Author</label>
+          <input id="new-author" required placeholder="author name" />
+        </div>
+        <div class="">
+          <label for="new-title">Title</label>
+          <input id="new-title" required placeholder="story title" />
+        </div>
+        <div class="">
+          <label for="new-url">URL</label>
+          <input id="new-url" required placeholder="story url" />
+        </div>
+        <input type="submit" value="Submit" />
+      </form>
+      <!-- loading message (removed by JS after stories loaded) -->
+      <div id="stories-loading-msg">Loading&hellip;</div>
 
-  <!-- loading message (removed by JS after stories loaded) -->
-  <div id="stories-loading-msg">Loading&hellip;</div>
+      <!-- List of all stories -->
+      <ol id="all-stories-list" class="stories-list"></ol>
 
-  <!-- List of all stories -->
-  <ol id="all-stories-list" class="stories-list"></ol>
+      <!-- TODO: Query this in main.js -->
+      <!-- List of fav stories -->
+      <ol id="fav-stories-list" class="hidden stories-list"></ol>
 
-</section>
+      <!-- TODO: Query this in main.js -->
+      <!-- List of my stories -->
+      <ol id="my-stories-list" class="hidden stories-list"></ol>
+    </section>
 
-<!-- Login and signup forms -->
-<section class="account-forms-container container">
+    <!-- Login and signup forms -->
+    <section class="account-forms-container container">
+      <!-- Login form -->
+      <form
+        action="#"
+        id="login-form"
+        class="account-form hidden"
+        method="post"
+      >
+        <h4>Login</h4>
+        <div class="login-input">
+          <label for="login-username">username</label>
+          <input id="login-username" autocomplete="current-username" />
+        </div>
+        <div class="login-input">
+          <label for="login-password">password</label>
+          <input
+            id="login-password"
+            type="password"
+            autocomplete="current-password"
+          />
+        </div>
+        <button type="submit">login</button>
+        <hr />
+      </form>
 
-  <!-- Login form -->
-  <form action="#" id="login-form" class="account-form hidden" method="post">
-    <h4>Login</h4>
-    <div class="login-input">
-      <label for="login-username">username</label>
-      <input id="login-username" autocomplete="current-username">
-    </div>
-    <div class="login-input">
-      <label for="login-password">password</label>
-      <input id="login-password" type="password" autocomplete="current-password">
-    </div>
-    <button type="submit">login</button>
-    <hr>
-  </form>
+      <!-- Signup form -->
+      <form
+        action="#"
+        id="signup-form"
+        class="account-form hidden"
+        method="post"
+      >
+        <h4>Create Account</h4>
+        <div class="login-input">
+          <label for="signup-name">name</label>
+          <input id="signup-name" autocapitalize="words" />
+        </div>
+        <div class="login-input">
+          <label for="signup-username">username</label>
+          <input id="signup-username" autocomplete="new-username" />
+        </div>
+        <div class="login-input">
+          <label for="signup-password">password</label>
+          <input
+            id="signup-password"
+            autocomplete="new-password"
+            type="password"
+          />
+        </div>
+        <button type="submit">create account</button>
+      </form>
+    </section>
 
-  <!-- Signup form -->
-  <form
-      action="#"
-      id="signup-form"
-      class="account-form hidden"
-      method="post">
-    <h4>Create Account</h4>
-    <div class="login-input">
-      <label for="signup-name">name</label>
-      <input id="signup-name" autocapitalize="words">
-    </div>
-    <div class="login-input">
-      <label for="signup-username">username</label>
-      <input id="signup-username" autocomplete="new-username">
-    </div>
-    <div class="login-input">
-      <label for="signup-password">password</label>
-      <input id="signup-password" autocomplete="new-password" type="password">
-    </div>
-    <button type="submit">create account</button>
-  </form>
-</section>
+    <!-- TODO: create user profile section and query this in main.js-->
+    <!-- area for user profile -->
+    <section id="user-profile">
+      <div class="container">
+        <!-- TODO: display info -->
+      </div>
+    </section>
 
-<!-- Library JS & our JS -->
-<script src="https://unpkg.com/jquery"></script>
-<script src="https://unpkg.com/axios/dist/axios.js"></script>
+    <!-- Library JS & our JS -->
+    <script src="https://unpkg.com/jquery"></script>
+    <script src="https://unpkg.com/axios/dist/axios.js"></script>
 
-<script src="js/models.js"></script>
-<script src="js/main.js"></script>
-<script src="js/nav.js"></script>
-<script src="js/user.js"></script>
-<script src="js/stories.js"></script>
-
-</body>
+    <script src="js/models.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/nav.js"></script>
+    <script src="js/user.js"></script>
+    <script src="js/stories.js"></script>
+  </body>
 </html>

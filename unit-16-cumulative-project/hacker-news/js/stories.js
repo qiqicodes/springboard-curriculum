@@ -19,6 +19,8 @@ async function getAndShowStoriesOnStart() {
  * Returns the markup for the story.
  */
 
+// TODO: modify this function to show Fav Stars and Delete Button based on Boolean of currentUser variable
+// init currentUser as null
 function generateStoryMarkup(story) {
   // console.debug("generateStoryMarkup", story);
 
@@ -35,6 +37,14 @@ function generateStoryMarkup(story) {
     `);
 }
 
+const favStarHtml = () => `
+  // some html
+`;
+
+const deleteBtnHtml = () => `
+  // some html
+`;
+
 /** Gets list of stories from server, generates their HTML, and puts on page. */
 
 function putStoriesOnPage() {
@@ -50,3 +60,26 @@ function putStoriesOnPage() {
 
   $allStoriesList.show();
 }
+
+// TODO: delete story
+// remove story from the array and dom
+// dependent on user storylist.
+
+// TODO: submit new story
+// 1. collect form data
+// 2. create instance of storyList.addStory
+// 3. generateStoryMarkup()
+// 4. append to all stories list
+// 5. hide form and reset form
+
+// TODO: display User's story lists
+//currentUser.ownStories
+//do something
+
+// TODO: display User favorite stories
+//currentUser.favorite
+// do something
+
+// TODO: toggle story favorite stars on and off
+// toggle star style
+// modify fav story list by currentUser.addFavorite or currentUser.removeFavorite methods

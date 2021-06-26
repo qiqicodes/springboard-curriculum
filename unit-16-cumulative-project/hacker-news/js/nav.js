@@ -14,6 +14,34 @@ function navAllStories(evt) {
 
 $body.on("click", "#nav-all", navAllStories);
 
+// TODO: navSubmitStoryClick(e){}
+const navSubmitStoryClick = (e) => {
+  //do something
+};
+
+JQUERYNAVSUBMIT.on("click", navSubmitStoryClick);
+
+// TODO: navFavClick(e){}
+const navFavClick = (e) => {
+  //do something
+};
+
+JQUERYNAVFAV.on("click", navFavClick);
+
+// TODO: navMyStoriesClick(e){}
+const navMyStoriesClick = (e) => {
+  //do something
+};
+
+JQUERYNAVMYSTORIES.on("click", navMyStoriesClick);
+
+// TODO: navProfileClick(e){}
+const navProfileClick = (e) => {
+  //do something
+};
+
+JQUERYNAVPROFILE.on("click", navProfileClick);
+
 /** Show login/signup on click on "login" */
 
 function navLoginClick(evt) {
