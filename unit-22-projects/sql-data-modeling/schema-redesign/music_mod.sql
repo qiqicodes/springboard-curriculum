@@ -10,7 +10,7 @@ CREATE TABLE "Songs" (
     "Duration" int   NOT NULL,
     "ReleaseDate" date   NOT NULL,
     "ArtistsID" int   NOT NULL,
-    "Producers" int   NOT NULL,
+    "ProducersID" int   NOT NULL,
     CONSTRAINT "pk_Songs" PRIMARY KEY (
         "SongID"
      )

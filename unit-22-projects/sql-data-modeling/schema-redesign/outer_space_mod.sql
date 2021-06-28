@@ -8,11 +8,11 @@ CREATE DATABASE outer_space;
 \c outer_space
 
 CREATE TABLE "Planets" (
-    "PlanetID" int   NOT NULL,
-    "Name" text   NOT NULL,
-    "OrbitsAround" int   NOT NULL,
-    "OrbitalPeriodInYears" float   NOT NULL,
-    "MoonID" int[]
+    "PlanetID" INT NOT NULL,
+    "Name" TEXT NOT NULL,
+    "OrbitsAroundStar" INT NOT NULL,
+    "OrbitalPeriodInYears" FLOAT NOT NULL,
+    "MoonID" INT[]
     CONSTRAINT "pk_Planets" PRIMARY KEY (
         "PlanetID"
      )
