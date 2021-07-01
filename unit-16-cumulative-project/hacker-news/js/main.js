@@ -8,8 +8,15 @@ const $body = $("body");
 const $storiesLoadingMsg = $("#stories-loading-msg");
 const $allStoriesList = $("#all-stories-list");
 
+const $navSubmit = $("#nav-submit");
+const $submitStoryForm = $("#submit-story-form");
+
+const $navFav = $("#nav-favorites");
+const $navOwnStories = $("#nav-own-stories");
+
 const $loginForm = $("#login-form");
 const $signupForm = $("#signup-form");
+const $userProfile = $("#user-profile");
 
 const $navLogin = $("#nav-login");
 const $navUserProfile = $("#nav-user-profile");
@@ -22,7 +29,13 @@ const $navLogOut = $("#nav-logout");
 
 // TODO: hide all the components when signed in
 function hidePageComponents() {
-  const components = [$allStoriesList, $loginForm, $signupForm];
+  const components = [
+    $allStoriesList,
+    $submitStoryForm,
+    $loginForm,
+    $signupForm,
+    $userProfile,
+  ];
   components.forEach((c) => c.hide());
 }
 
@@ -47,4 +60,5 @@ console.warn(
     " seeing those helpful debug messages. In your browser console, click on" +
     " menu 'Default Levels' and add Verbose"
 );
+
 $(start);

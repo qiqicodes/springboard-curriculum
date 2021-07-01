@@ -36,8 +36,14 @@
       <div class="navbar-brand">
         <a class="nav-link" href="#" id="nav-all">Hack or Snooze</a>
       </div>
-      <!-- TODO: add nav link to 'submit', 'favorite', 'my stories' -->
-
+      <!-- DONE: add nav link to 'submit', 'favorite', 'my stories' -->
+      <div class="navbar-main-links hidden">
+        <a href="#" id="nav-submit" class="nav-link">submit</a>
+        |
+        <a href="#" id="nav-favorites" class="nav-link">favorites</a>
+        |
+        <a href="#" id="nav-own-stories" class="nav-link">my stories</a>
+      </div>
       <div class="nav-right">
         <a class="nav-link" href="#" id="nav-login">login/signup</a>
         <a class="nav-link" href="#" id="nav-user-profile"></a>
@@ -47,15 +53,15 @@
 
     <!-- area for stories (all stories, user stories, favorites) -->
     <section class="stories-container container">
-      <!-- TODO: create addstory form -->
-      <form id="submit-story-form">
-        <div class="">
-          <label for="new-author">Author</label>
-          <input id="new-author" required placeholder="author name" />
-        </div>
+      <!-- DONE: create addstory form -->
+      <form id="submit-story-form" class="hidden">
         <div class="">
           <label for="new-title">Title</label>
           <input id="new-title" required placeholder="story title" />
+        </div>
+        <div class="">
+          <label for="new-author">Author</label>
+          <input id="new-author" required placeholder="author name" />
         </div>
         <div class="">
           <label for="new-url">URL</label>
@@ -132,11 +138,23 @@
       </form>
     </section>
 
-    <!-- TODO: create user profile section and query this in main.js-->
+    <!-- DONE: create user profile section and query this in main.js-->
+    <!-- TODO: FS: make user profile editible -->
     <!-- area for user profile -->
-    <section id="user-profile">
-      <div class="container">
-        <!-- TODO: display info -->
+    <section id="user-profile" class="hidden">
+      <div class="user-profile-container container">
+        <!-- DONE: display info -->
+        <h4>User Profile</h4>
+        <div class="user-info">Name: <span id="user-profile-name"></span></div>
+        <div class="user-info">
+          Username: <span id="user-profile-username"></span>
+        </div>
+        <div class="user-info">
+          Account Created At: <span id="user-profile-created-at"></span>
+        </div>
+        <a href="#" class="edit-user-button" id="edit-user"
+          >Edit Account Info</a
+        >
       </div>
     </section>
 

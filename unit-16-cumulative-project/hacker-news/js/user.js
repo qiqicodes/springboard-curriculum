@@ -108,22 +108,31 @@ function saveUserCredentialsInLocalStorage() {
  */
 
 // TODO: fix this to
-// 1. hide irrelevant information ie. hidePageComponents()
-// 2. re-display the stories with favorite stars
-// 3. generateUserProfile()
+// 1. hide irrelevant information ie. hidePageComponents() DONE
+// TODO: 2. re-display the stories with favorite stars
+// 3. generateUserProfile() DONE
 
 function updateUIOnUserLogin() {
   console.debug("updateUIOnUserLogin");
 
+  hidePageComponents();
+
   $allStoriesList.show();
 
   updateNavOnLogin();
+  generateUserProfile();
 }
 
-// TODO: Generate User Profile
+// DONE: Generate User Profile
 
 const generateUserProfile = () => {
   console.debug("generateUserProfile");
 
-  // do something
+  $("#user-profile-name").text(currentUser.name);
+  $("#user-profile-username").text(currentUser.username);
+  $("#user-profile-created-at").text(currentUser.createdAt.slice(0, 10));
 };
+
+// TODO: FS Edit User profile
+
+// listen to $('#edit-user') click

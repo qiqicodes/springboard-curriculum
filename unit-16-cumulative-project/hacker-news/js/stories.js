@@ -71,6 +71,25 @@ function putStoriesOnPage() {
 // 3. generateStoryMarkup()
 // 4. append to all stories list
 // 5. hide form and reset form
+async function handleSubmitNewStory(e) {
+  console.debug("handleSubmitNewStory", e);
+  e.preventDefault();
+
+  const title = $("#new-title").val();
+  const author = $("#new-author").val();
+  const url = $("#new-url").val();
+  const username = currentUser.username;
+  const data = { username, title, author, url };
+  console.log(data, currentUser.loginToken);
+  const story = await storyList.addStory(currentUser, data);
+
+  const $story = generateStoryMarkup(story);
+  $allStoriesList.prepend($story);
+
+  $submitStoryForm.trigger("reset");
+}
+
+$submitStoryForm.on("submit", handleSubmitNewStory);
 
 // TODO: display User's story lists
 //currentUser.ownStories

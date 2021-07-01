@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %} {user.first_name}'s Profile {% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row justify-content-lg-center">
+
+            <div class="form-group">
+                <p>Name: {{ user.first_name }} {{ user.last_name }}</p>
+                <p> Username: {{ user.username}}</p>
+                <p> Email: {{ user.email}}</p>
+
+            </div>
+            
+            <form>
+            <button class="btn btn-danger btn-sm"
+                    formaction="/users/{{ user.username }}/delete"
+                    formmethod="POST">
+                Delete User
+            </button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

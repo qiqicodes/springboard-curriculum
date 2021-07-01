@@ -23,7 +23,7 @@ class Story {
   /** Parses hostname out of URL and returns it. */
 
   getHostName() {
-    // UNIMPLEMENTED: complete this function!
+    // IMPLEMENTED: completed this function! get the domain and the port from url
     return new URL(this.url).host;
   }
 }
@@ -71,14 +71,42 @@ class StoryList {
    * Returns the new Story instance
    */
 
-  // TODO: addStory function
-  async addStory(/* user, newStory */) {
-    // UNIMPLEMENTED: complete this function!
+  // TODO: addStory function CHECK functionality
+  async addStory(user, { title, author, url }) {
+    const token = user.loginToken;
+    const response = await axios({
+      url: `${BASE_URL}/stories`,
+      method: "POST",
+      data: { token, story: { title, author, url } },
+    });
+
+    console.log(response.data);
+
+    const story = new StoryList(response.data.story);
+    this.stories.unshift(story);
+    user.ownStories.unshift(story);
+
+    return story;
   }
 
-  // TODO: removeStory functions
-  async removeStory(/* user, storyId */) {
-    // do something
+  // TODO: removeStory functions CHECK functionality
+  async removeStory(user, storyId) {
+    const token = user.loginToken;
+    await axios({
+      url: `${BASE_URL}/stories/${storyId}`,
+      method: "DELETE",
+      data: { token },
+    });
+
+    this.stories = this.stories.filter((story) => story.storyId !== storyId);
+
+    user.ownStories = user.ownStories.filter(
+      (story) => story.storyId !== storyId
+    );
+
+    user.favorites = user.favorites.filter(
+      (story) => story.storyId !== storyId
+    );
   }
 }
 

@@ -14,33 +14,40 @@ function navAllStories(evt) {
 
 $body.on("click", "#nav-all", navAllStories);
 
-// TODO: navSubmitStoryClick(e){}
+// DONE: navSubmitStoryClick(e){}
 const navSubmitStoryClick = (e) => {
-  //do something
+  console.debug("navSubmitStoryClick", e);
+  hidePageComponents();
+  $submitStoryForm.show();
 };
 
-JQUERYNAVSUBMIT.on("click", navSubmitStoryClick);
+$navSubmit.on("click", navSubmitStoryClick);
 
 // TODO: navFavClick(e){}
 const navFavClick = (e) => {
   //do something
+  console.log("clicked on fav link");
 };
 
-JQUERYNAVFAV.on("click", navFavClick);
+$navFav.on("click", navFavClick);
 
 // TODO: navMyStoriesClick(e){}
 const navMyStoriesClick = (e) => {
   //do something
+  console.log("clicked on own stories link");
 };
 
-JQUERYNAVMYSTORIES.on("click", navMyStoriesClick);
+$navOwnStories.on("click", navMyStoriesClick);
 
-// TODO: navProfileClick(e){}
+// DONE: navProfileClick(e){}
 const navProfileClick = (e) => {
   //do something
+  console.debug("navProfileClick", e);
+  hidePageComponents();
+  $userProfile.show();
 };
 
-JQUERYNAVPROFILE.on("click", navProfileClick);
+$navUserProfile.on("click", navProfileClick);
 
 /** Show login/signup on click on "login" */
 
@@ -57,7 +64,7 @@ $navLogin.on("click", navLoginClick);
 
 function updateNavOnLogin() {
   console.debug("updateNavOnLogin");
-  $(".main-nav-links").show();
+  $(".navbar-main-links").show();
   $navLogin.hide();
   $navLogOut.show();
   $navUserProfile.text(`${currentUser.username}`).show();

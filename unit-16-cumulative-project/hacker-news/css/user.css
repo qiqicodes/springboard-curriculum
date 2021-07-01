@@ -14,3 +14,32 @@
 }
 
 /* TODO: my profile page */
+.user-profile-container {
+  padding: 20px;
+}
+
+.user-info {
+  margin: 10px;
+}
+
+.edit-user-button {
+  text-align: center;
+  margin: 10px;
+  max-width: 300px;
+  text-decoration: none;
+  background-color: #efefef;
+  color: #353535;
+  padding: 1em 1.5em;
+  border-radius: 5px;
+  border: 1px solid #fdfdfc;
+}
+
+.edit-user-button:hover {
+  background-color: #555;
+  color: #efefef;
+  text-decoration: none;
+}
+
+.edit-user-button:active {
+  background-color: black;
+}
