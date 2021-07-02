@@ -1,7 +1,17 @@
 {% extends 'base.html' %}
 
-{% block title %} Edit Feedback {% endblock %}
+{% block title %} Add Feedback {% endblock %}
 
 {% block content %}
+<h1 class="m-4">Add New Feedback</h1>
 
+<div class="container">
+    <div class="row justify-content-lg-center">
+      <form method="POST">
+        {% include "form.html" %}
+        <a href="/users/{{ user.username}}" class="btn btn-outline-info">Cancel</a>
+        <button class="btn btn-success">Add Feedback</button>
+      </form>
+    </div>
+  </div>
 {% endblock %}

@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField
+from wtforms import StringField, TextAreaField, HiddenField
 from wtforms.widgets import PasswordInput
 
 from wtforms.validators import InputRequired, Email, Length
@@ -19,16 +19,12 @@ class SignInForm(FlaskForm):
     username = StringField('User Name', validators=[InputRequired(), Length(min=3, max=20)])
     password = StringField('Password', widget=PasswordInput(), validators=[InputRequired(), Length(min=8, max=50)])
 
-class AddFeedbackForm(FlaskForm):
-    '''Form for adding feedback'''
+class FeedbackForm(FlaskForm):
+    '''Form for adding/editing feedback'''
     title = TextAreaField('Title', validators=[InputRequired(), Length(max=150)])
     content = TextAreaField('Content', validators=[InputRequired()])
-
-class EditFeedbackForm(FlaskForm):
-    '''Form for editing feedback'''
-
-    title = TextAreaField('Title', validators=[InputRequired(), Length(max=100)])
-    content = TextAreaField('Content', validators=[InputRequired()])
-
+    
 class DeleteForm(FlaskForm):
     '''Form for deleting form data'''
+
+

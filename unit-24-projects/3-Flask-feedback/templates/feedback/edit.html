@@ -3,5 +3,22 @@
 {% block title %} Edit Feedback {% endblock %}
 
 {% block content %}
+<h1 class="m-4">Edit Feedback</h1>
 
+<div class="container">
+    <div class="row justify-content-lg-center">
+        <div class="form-group">
+            <p>Title: {{ feedback.title }}</p>
+            <p> Content: {{ feedback.content}}</p>
+        </div>
+    </div>
+    <hr>
+    <div class="row justify-content-lg-center">
+        <form method="POST">
+            {% include "form.html" %}            
+            <a href="/users/{{ feedback.username}}" class="btn btn-outline-info">Cancel</a>
+            <button class="btn btn-success">Save Feedback</button>
+        </form>
+    </div>
+  </div>
 {% endblock %}

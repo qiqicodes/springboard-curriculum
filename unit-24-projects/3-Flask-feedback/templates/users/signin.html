@@ -1,7 +1,21 @@
 {% extends 'base.html' %}
 
-{% block title %} Edit Feedback {% endblock %}
+{% block title %} Sign In {% endblock %}
 
 {% block content %}
+<h1 class="m-4">Sign In Page</h1>
 
+<div class="container">
+    <div class="row justify-content-lg-center">
+      <form method="POST">
+        {% include "form.html" %}
+        <button class="btn btn-primary" style='min-width: 200px;'>Sign In</button>
+      </form>
+    </div>
+    <hr>
+    <h2>Don't have an account yet?</h2>
+    <div class="row justify-content-lg-center m-4">
+    <a href="/register" class="btn btn-success" style='min-width: 200px;'>Sign Up</a>
+    </div>
+  </div>
 {% endblock %}

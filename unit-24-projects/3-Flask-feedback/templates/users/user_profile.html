@@ -4,20 +4,45 @@
 
 {% block content %}
     <div class="container">
+        <h1 class="m-4">{{ user.first_name }}'s Profile</h1>
         <div class="row justify-content-lg-center">
-
             <div class="form-group">
                 <p>Name: {{ user.first_name }} {{ user.last_name }}</p>
                 <p> Username: {{ user.username}}</p>
                 <p> Email: {{ user.email}}</p>
-
+                <a href="/users/{{ user.username }}/feedback/add" class="btn btn-outline-primary btn-lg">Add New Feedback</a>
+                <a href="/logout" class="btn btn-success btn-lg">Sign Out</a>
             </div>
-            
+        </div>
+        <hr>
+        {% for feedback in user.feedbacks %}
+        <div class="row justify-content-lg-center">
+            <div class="form-group">
+                <p>Title: {{ feedback.title }}</p>
+                <p> Content: {{ feedback.content}}</p>
+                <form>
+                    <!-- {{form.hidden_tag()}} -->
+                    <button class="btn btn-outline-primary"
+                        formaction="/feedback/{{ feedback.id }}/update"
+                        formmethod="GET">
+                        Edit Feedback
+                    </button>
+                    <button class="btn btn-danger"
+                        formaction="/feedback/{{ feedback.id }}/delete"
+                        formmethod="POST">
+                        Delete Feedback
+                    </button>
+                </form>
+            </div>
+        </div>
+        <hr>
+            {% endfor %}
+        <div class="row justify-content-lg-center m-4">
             <form>
-            <button class="btn btn-danger btn-sm"
+            <button class="btn btn-danger"
                     formaction="/users/{{ user.username }}/delete"
                     formmethod="POST">
-                Delete User
+                    Delete User
             </button>
             </form>
         </div>

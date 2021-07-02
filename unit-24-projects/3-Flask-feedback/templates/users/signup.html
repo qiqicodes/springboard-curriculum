@@ -7,11 +7,16 @@
 
 <div class="container">
     <div class="row justify-content-lg-center">
-      <form method="POST">
-        {% include "form.html" %}
-        <button class="btn btn-primary">Add</button>
-      </form>
+        <form method="POST">
+            {% include "form.html" %}
+            <button class="btn btn-primary" style='min-width: 200px;'>Sign Up</button>
+        </form>
     </div>
-  </div>
+    <hr>
+    <h2>Already have an account?</h2>
+    <div class="row justify-content-lg-center m-4">
+    <a href="/login" class="btn btn-success" style='min-width: 200px;'>Sign in</a>
+    </div>
+</div>
 
 {% endblock %}
