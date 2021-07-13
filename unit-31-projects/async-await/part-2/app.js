@@ -36,30 +36,28 @@ drawTwoCards();
 // go to the Deck of Cards API to create a new deck, and show a button on the page that will let you draw a card.
 // Every time you click the button, display a new card, until there are no cards left in the deck.
 
-let deckId = null;
-let button = document.querySelector("button");
-let cardArea = document.getElementById("cards");
+async function drawCardFromDeck() {
+  let deckId = null;
+  let button = document.querySelector("button");
+  let cardArea = document.getElementById("cards");
 
-window.addEventListener("DOMContentLoaded", () => {
-  axios.get(`${baseURL}/new/shuffle`).then((response) => {
-    console.log("third request");
-    deckId = response.data.deck_id;
-    console.log(deckId);
-    button.style.display = "block";
+  let response = await axios.get(`${baseURL}/new/shuffle`);
+  console.log(response.data.deck_id);
+  deckId = response.data.deck_id;
+  button.style.display = "block";
+
+  button.addEventListener("click", async function () {
+    let cardData = await axios.get(`${baseURL}/${deckId}/draw`);
+    let suit = cardData.data.cards[0].suit;
+    let value = cardData.data.cards[0].value;
+    let image = cardData.data.cards[0].image;
+    cardArea.innerHTML = `<img src=${image} alt="${value} of ${suit}">`;
+
+    if (cardData.data.remaining === 0) {
+      button.style.display = "none";
+      cardArea.innerHTML = "<h1>No more card in deck</h1>";
+    }
   });
+}
 
-  button.addEventListener("click", () => {
-    axios.get(`${baseURL}/${deckId}/draw`).then((response) => {
-      console.log(response.data.cards[0]);
-      let suit = response.data.cards[0].suit;
-      let value = response.data.cards[0].value;
-      let image = response.data.cards[0].image;
-      cardArea.innerHTML = `<img src=${image} alt="${value} of ${suit}">`;
-
-      if (response.data.remaining === 0) {
-        button.style.display = "none";
-        cardArea.innerHTML = "<h1>No more card in deck</h1>";
-      }
-    });
-  });
-});
+drawCardFromDeck();
