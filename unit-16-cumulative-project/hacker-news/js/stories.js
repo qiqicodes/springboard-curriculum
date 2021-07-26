@@ -171,7 +171,7 @@ async function favStarToggle(e) {
     await currentUser.addFavorite(story);
     $target.closest("i").toggleClass("far fas");
   } else {
-    // await currentUser.removeFavorite(story);
+    await currentUser.removeFavorite(story);
     $target.closest("i").toggleClass("fas far");
   }
 }
