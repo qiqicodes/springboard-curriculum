@@ -117,6 +117,7 @@ function updateUIOnUserLogin() {
 
   hidePageComponents();
 
+  putStoriesOnPage();
   $allStoriesList.show();
 
   updateNavOnLogin();
@@ -134,5 +135,20 @@ const generateUserProfile = () => {
 };
 
 // TODO: FS Edit User profile
-
 // listen to $('#edit-user') click
+
+// const updateUserProfile = () => {
+//   console.debug("updateUserProfile");
+
+//   hidePageComponents();
+
+//   $("#current-name").attr("placeholder", currentUser.name);
+//   $updateUserName.show();
+
+//   const val = $("new-name").val();
+//   currentUser.updateName(val);
+
+//   generateUserProfile();
+// };
+
+// $("#edit-user").on("click", updateUserProfile);

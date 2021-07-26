@@ -7,9 +7,26 @@ let storyList;
 
 async function getAndShowStoriesOnStart() {
   storyList = await StoryList.getStories();
+  console.log("storyList", storyList);
   $storiesLoadingMsg.remove();
 
   putStoriesOnPage();
+}
+
+/** Gets list of stories from server, generates their HTML, and puts on page. */
+
+function putStoriesOnPage() {
+  console.debug("putStoriesOnPage");
+
+  $allStoriesList.empty();
+
+  // loop through all of our stories and generate HTML for them
+  for (let story of storyList.stories) {
+    const $story = generateStoryMarkup(story);
+    $allStoriesList.append($story);
+  }
+
+  $allStoriesList.show();
 }
 
 /**
@@ -19,10 +36,10 @@ async function getAndShowStoriesOnStart() {
  * Returns the markup for the story.
  */
 
-// TODO: modify this function to show Fav Stars and Delete Button based on Boolean of currentUser variable
+// TODO: modify this function to show Fav Stars - DONE, and Delete Button based on Boolean of currentUser variable
 // init currentUser as null
 function generateStoryMarkup(story) {
-  // console.debug("generateStoryMarkup", story);
+  console.debug("generateStoryMarkup");
 
   const hostName = story.getHostName();
 
@@ -41,29 +58,21 @@ function generateStoryMarkup(story) {
     `);
 }
 
-const favStarHtml = () => `
-  // some html
-`;
+function getStarHTML(story, currentUser) {
+  const isFavorite = currentUser.isFavorite(story);
+  // console.log("isFavorite", isFavorite);
+  const favStar = isFavorite ? "fas" : "far";
+
+  return `
+    <span class="star">
+      <i class="${favStar} fa-star"></i>
+    </span>
+  `;
+}
 
 const deleteBtnHtml = () => `
   // some html
 `;
-
-/** Gets list of stories from server, generates their HTML, and puts on page. */
-
-function putStoriesOnPage() {
-  console.debug("putStoriesOnPage");
-
-  $allStoriesList.empty();
-
-  // loop through all of our stories and generate HTML for them
-  for (let story of storyList.stories) {
-    const $story = generateStoryMarkup(story);
-    $allStoriesList.append($story);
-  }
-
-  $allStoriesList.show();
-}
 
 // TODO: delete story
 // remove story from the array and dom
@@ -105,6 +114,26 @@ $submitStoryForm.on("submit", handleSubmitNewStory);
 //currentUser.favorite
 // do something
 
+const putFavStoriesOnPage = () => {
+  console.debug("putFavStoriesOnPage");
+
+  $favStoriesList.empty();
+
+  // loop through all of our stories and generate HTML for them
+  if (currentUser.favorites.length !== 0) {
+    for (let story of currentUser.favorites) {
+      const $story = generateStoryMarkup(story);
+      $favStoriesList.append($story);
+    }
+  } else {
+    $favStoriesList.append(
+      `<h1>${currentUser.name} has no favorite story</h1>`
+    );
+  }
+
+  $favStoriesList.show();
+};
+
 // TODO: toggle story favorite stars on and off
 // toggle star style
 // modify fav story list by currentUser.addFavorite or currentUser.removeFavorite methods
@@ -113,28 +142,18 @@ function favStarToggle(e) {
   console.debug("favStarToggle");
 
   const $target = $(e.target);
-  console.log($target);
+  // console.log($target);
   const closestLi = $target.closest("li");
   const storyId = closestLi.attr("id");
   const story = storyList.stories.find((story) => story.storyId === storyId);
 
   if ($target.hasClass("far")) {
+    // await currentUser.addFavorite(story);
     $target.closest("i").toggleClass("far fas");
   } else {
+    // await currentUser.removeFavorite(story);
     $target.closest("i").toggleClass("fas far");
   }
 }
 
 $storiesList.on("click", ".star", favStarToggle);
-
-function getStarHTML(story, currentUser) {
-  const isFavorite = currentUser.isFavorite(story);
-  console.log("isFavorite", isFavorite);
-  const favStar = isFavorite ? "fas" : "far";
-
-  return `
-    <span class="star">
-      <i class="${favStar} fa-star"></i>
-    </span>
-  `;
-}

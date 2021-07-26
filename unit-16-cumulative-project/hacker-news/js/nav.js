@@ -26,8 +26,13 @@ $navSubmit.on("click", navSubmitStoryClick);
 
 // TODO: navFavClick(e){}
 const navFavClick = (e) => {
+  console.debug("navFavClick", e);
   //do something
-  console.log("clicked on fav link");
+  console.log($favStoriesList);
+
+  hidePageComponents();
+
+  putFavStoriesOnPage();
 };
 
 $navFav.on("click", navFavClick);

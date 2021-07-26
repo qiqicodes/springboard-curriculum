@@ -221,14 +221,40 @@ class User {
     }
   }
 
+  //TODO: FS Edit User Name
+  // async updateName(name) {
+  //   const token = this.loginToken;
+
+  //   const response = await axios({
+  //     url: `${BASE_URL}/user/${this.username}`,
+  //     method: "PATCH",
+  //     data: { token, user: { name } },
+  //   });
+
+  //   const { user } = response.data;
+
+  //   console.log(user);
+  //   return user;
+  // }
+
   // TODO: addFavorite function
 
   // N> storyId, user username && Token
   // if true, push story to favorites []
 
   async addFavorite(story) {
+    const token = this.loginToken;
+
     this.favorites.push(story);
-    // do some await
+    console.log(this.favorites);
+
+    const response = await axios({
+      url: `${BASE_URL}/users/${this.username}/favorites/${story.storyId}`,
+      method: "POST",
+      data: { token },
+    });
+
+    return response.data;
   }
 
   // TODO: removeFavorite function

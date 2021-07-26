@@ -138,10 +138,30 @@
         </div>
         <button type="submit">create account</button>
       </form>
+
+      <!-- DONE: FS: make user profile editible -->
+      <!-- Update User Form -->
+      <form
+        action="#"
+        id="update-form"
+        class="account-form hidden"
+        method="patch"
+      >
+        <h4>Login</h4>
+        <div class="login-input">
+          <label for="current-name">Current Name</label>
+          <input id="current-name" disabled="true" />
+        </div>
+        <div class="login-input">
+          <label for="new-name">New Name</label>
+          <input id="new-name" />
+        </div>
+        <button type="submit">Update Name</button>
+        <hr />
+      </form>
     </section>
 
     <!-- DONE: create user profile section and query this in main.js-->
-    <!-- TODO: FS: make user profile editible -->
     <!-- area for user profile -->
     <section id="user-profile" class="hidden">
       <div class="user-profile-container container">
@@ -154,9 +174,14 @@
         <div class="user-info">
           Account Created At: <span id="user-profile-created-at"></span>
         </div>
-        <a href="#" class="edit-user-button" id="edit-user"
+        <a
+          href="#"
+          class="edit-user-button"
+          id="edit-user"
+          style="display: none"
           >Edit Account Info</a
         >
+        <hr />
       </div>
     </section>
 
