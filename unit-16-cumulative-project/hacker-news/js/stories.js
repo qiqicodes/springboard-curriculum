@@ -78,14 +78,16 @@ async function handleSubmitNewStory(e) {
   const title = $("#new-title").val();
   const author = $("#new-author").val();
   const url = $("#new-url").val();
-  const username = currentUser.username;
-  const data = { username, title, author, url };
-  console.log(data, currentUser.loginToken);
+  const data = { title, author, url };
+  // console.log(data, currentUser.loginToken);
   const story = await storyList.addStory(currentUser, data);
+
+  console.log(story);
 
   const $story = generateStoryMarkup(story);
   $allStoriesList.prepend($story);
 
+  $submitStoryForm.slideUp("slow");
   $submitStoryForm.trigger("reset");
 }
 

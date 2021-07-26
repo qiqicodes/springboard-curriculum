@@ -18,6 +18,7 @@ $body.on("click", "#nav-all", navAllStories);
 const navSubmitStoryClick = (e) => {
   console.debug("navSubmitStoryClick", e);
   hidePageComponents();
+  $allStoriesList.show();
   $submitStoryForm.show();
 };
 
