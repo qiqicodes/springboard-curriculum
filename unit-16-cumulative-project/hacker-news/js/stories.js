@@ -108,18 +108,36 @@ $submitStoryForm.on("submit", handleSubmitNewStory);
 
 // TODO: display User's story lists
 //currentUser.ownStories
-//do something
 
-// TODO: display User favorite stories
-//currentUser.favorite
-// do something
+const putMyStoriesOnPage = () => {
+  console.debug("putMyStoriesOnPage");
+
+  $myStoriesList.empty();
+
+  console.log(currentUser);
+
+  // loop through all of my stories and generate HTML for them
+  if (currentUser.ownStories.length !== 0) {
+    for (let story of currentUser.ownStories) {
+      const $story = generateStoryMarkup(story);
+      $myStoriesList.append($story);
+    }
+  } else {
+    $myStoriesList.append(`<h1>${currentUser.name} has no story</h1>`);
+  }
+
+  $myStoriesList.show();
+};
+
+// Done: display User favorite stories
+//currentUser.favorites
 
 const putFavStoriesOnPage = () => {
   console.debug("putFavStoriesOnPage");
 
   $favStoriesList.empty();
 
-  // loop through all of our stories and generate HTML for them
+  // loop through all of fav stories and generate HTML for them
   if (currentUser.favorites.length !== 0) {
     for (let story of currentUser.favorites) {
       const $story = generateStoryMarkup(story);
@@ -147,6 +165,7 @@ function favStarToggle(e) {
   const storyId = closestLi.attr("id");
   const story = storyList.stories.find((story) => story.storyId === storyId);
 
+  console.log(story);
   if ($target.hasClass("far")) {
     // await currentUser.addFavorite(story);
     $target.closest("i").toggleClass("far fas");

@@ -24,14 +24,11 @@ const navSubmitStoryClick = (e) => {
 
 $navSubmit.on("click", navSubmitStoryClick);
 
-// TODO: navFavClick(e){}
+// DONE: navFavClick(e){}
 const navFavClick = (e) => {
-  console.debug("navFavClick", e);
-  //do something
-  console.log($favStoriesList);
+  console.debug("navFavClick");
 
   hidePageComponents();
-
   putFavStoriesOnPage();
 };
 
@@ -39,8 +36,10 @@ $navFav.on("click", navFavClick);
 
 // TODO: navMyStoriesClick(e){}
 const navMyStoriesClick = (e) => {
-  //do something
-  console.log("clicked on own stories link");
+  console.debug("navMyStoriesClick");
+
+  hidePageComponents();
+  putMyStoriesOnPage();
 };
 
 $navOwnStories.on("click", navMyStoriesClick);
