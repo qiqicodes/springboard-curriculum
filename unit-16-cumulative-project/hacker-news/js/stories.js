@@ -156,18 +156,19 @@ const putFavStoriesOnPage = () => {
 // toggle star style
 // modify fav story list by currentUser.addFavorite or currentUser.removeFavorite methods
 
-function favStarToggle(e) {
+async function favStarToggle(e) {
   console.debug("favStarToggle");
 
   const $target = $(e.target);
-  // console.log($target);
   const closestLi = $target.closest("li");
   const storyId = closestLi.attr("id");
   const story = storyList.stories.find((story) => story.storyId === storyId);
 
   console.log(story);
+  console.log(currentUser);
+
   if ($target.hasClass("far")) {
-    // await currentUser.addFavorite(story);
+    await currentUser.addFavorite(story);
     $target.closest("i").toggleClass("far fas");
   } else {
     // await currentUser.removeFavorite(story);

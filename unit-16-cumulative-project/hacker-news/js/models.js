@@ -248,13 +248,11 @@ class User {
     this.favorites.push(story);
     console.log(this.favorites);
 
-    const response = await axios({
+    await axios({
       url: `${BASE_URL}/users/${this.username}/favorites/${story.storyId}`,
       method: "POST",
       data: { token },
     });
-
-    return response.data;
   }
 
   // TODO: removeFavorite function
@@ -269,9 +267,9 @@ class User {
   // TODO: addOrRemoveFavorite function
   // axios call on post or delete
 
-  // TODO: isFavorite function
+  // Done: isFavorite function
   isFavorite(story) {
     // return this.favorites
-    return this.favorites.some((story) => story.storyId === story.storyId);
+    return this.favorites.find((s) => s.storyId === story.storyId);
   }
 }
