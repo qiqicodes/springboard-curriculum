@@ -192,6 +192,7 @@ async function favStarToggle(e) {
   } else {
     await currentUser.removeFavorite(story);
     $target.closest("i").toggleClass("fas far");
+    putFavStoriesOnPage();
   }
 }
 
