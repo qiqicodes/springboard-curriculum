@@ -30,7 +30,7 @@ function generateStoryMarkup(story) {
 
   return $(`
       <li id="${story.storyId}">
-      ${loggedUser && getStarHTML(story, currentUser)}
+      ${loggedUser ? getStarHTML(story, currentUser) : ""}
         <a href="${story.url}" target="a_blank" class="story-link">
           ${story.title}
         </a>
@@ -86,7 +86,7 @@ async function handleSubmitNewStory(e) {
   // console.log(data, currentUser.loginToken);
   const story = await storyList.addStory(currentUser, data);
 
-  console.log(story);
+  // console.log(story);
 
   const $story = generateStoryMarkup(story);
   $allStoriesList.prepend($story);
@@ -108,13 +108,33 @@ $submitStoryForm.on("submit", handleSubmitNewStory);
 // TODO: toggle story favorite stars on and off
 // toggle star style
 // modify fav story list by currentUser.addFavorite or currentUser.removeFavorite methods
+
+function favStarToggle(e) {
+  console.debug("favStarToggle");
+
+  const $target = $(e.target);
+  console.log($target);
+  const closestLi = $target.closest("li");
+  const storyId = closestLi.attr("id");
+  const story = storyList.stories.find((story) => story.storyId === storyId);
+
+  if ($target.hasClass("far")) {
+    $target.closest("i").toggleClass("far fas");
+  } else {
+    $target.closest("i").toggleClass("fas far");
+  }
+}
+
+$storiesList.on("click", ".star", favStarToggle);
+
 function getStarHTML(story, currentUser) {
-  // const isFavorite = currentUser.isFavorite(story);
-  const isFavorite = false;
+  const isFavorite = currentUser.isFavorite(story);
   console.log("isFavorite", isFavorite);
   const favStar = isFavorite ? "fas" : "far";
 
   return `
-    <i class="${favStar} fa-star"></i>
+    <span class="star">
+      <i class="${favStar} fa-star"></i>
+    </span>
   `;
 }

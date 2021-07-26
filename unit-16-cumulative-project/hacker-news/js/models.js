@@ -80,7 +80,7 @@ class StoryList {
       data: { token, story: { author, title, url } },
     });
 
-    console.log(response.data);
+    // console.log(response.data);
 
     const story = new Story(response.data.story);
     this.stories.unshift(story);
@@ -222,12 +222,19 @@ class User {
   }
 
   // TODO: addFavorite function
+
+  // N> storyId, user username && Token
+  // if true, push story to favorites []
+
   async addFavorite(story) {
     this.favorites.push(story);
     // do some await
   }
 
   // TODO: removeFavorite function
+  // N> storyId, user username && Token
+  // if filter story, remove story from favorites []
+
   async removeFavorite(story) {
     this.favorites = this.favorites.filter((s) => s.storyId === story.storyId);
     // do some await
@@ -239,5 +246,6 @@ class User {
   // TODO: isFavorite function
   isFavorite(story) {
     // return this.favorites
+    return this.favorites.some((story) => story.storyId === story.storyId);
   }
 }
