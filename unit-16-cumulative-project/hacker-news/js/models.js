@@ -89,7 +89,7 @@ class StoryList {
     return story;
   }
 
-  // TODO: removeStory functions CHECK functionality
+  // DONE: removeStory functions CHECK functionality
   async removeStory(user, storyId) {
     const token = user.loginToken;
     await axios({

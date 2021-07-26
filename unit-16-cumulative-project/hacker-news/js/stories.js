@@ -36,7 +36,7 @@ function putStoriesOnPage() {
  * Returns the markup for the story.
  */
 
-// TODO: modify this function to show Fav Stars - DONE, and Delete Button based on Boolean of currentUser variable
+// DONE: modify this function to show Fav Stars - DONE, and Delete Button - DONE based on Boolean of currentUser variable
 // init currentUser as null
 function generateStoryMarkup(story, showDeleteButton = false) {
   console.debug("generateStoryMarkup");
@@ -77,9 +77,25 @@ const deleteBtnHtml = () => `
   </span>
 `;
 
-// TODO: delete story
+// DONE: delete story
 // remove story from the array and dom
 // dependent on user storylist.
+// N> storyId, token
+
+async function deleteStory(e) {
+  console.debug("deleteStory");
+  e.preventDefault();
+  const closestLi = $(e.target).closest("li");
+  const storyId = $(e.target).closest("li").attr("id");
+
+  await storyList.removeStory(currentUser, storyId);
+
+  console.log(currentUser.ownStories);
+
+  putMyStoriesOnPage();
+}
+
+$body.on("click", ".trash", deleteStory);
 
 // DONE: submit new story
 // 1. collect form data
