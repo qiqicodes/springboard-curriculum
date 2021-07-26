@@ -25,8 +25,12 @@ function generateStoryMarkup(story) {
   // console.debug("generateStoryMarkup", story);
 
   const hostName = story.getHostName();
+
+  const loggedUser = Boolean(currentUser);
+
   return $(`
       <li id="${story.storyId}">
+      ${loggedUser && getStarHTML(story, currentUser)}
         <a href="${story.url}" target="a_blank" class="story-link">
           ${story.title}
         </a>
@@ -65,7 +69,7 @@ function putStoriesOnPage() {
 // remove story from the array and dom
 // dependent on user storylist.
 
-// TODO: submit new story
+// DONE: submit new story
 // 1. collect form data
 // 2. create instance of storyList.addStory
 // 3. generateStoryMarkup()
@@ -104,3 +108,13 @@ $submitStoryForm.on("submit", handleSubmitNewStory);
 // TODO: toggle story favorite stars on and off
 // toggle star style
 // modify fav story list by currentUser.addFavorite or currentUser.removeFavorite methods
+function getStarHTML(story, currentUser) {
+  // const isFavorite = currentUser.isFavorite(story);
+  const isFavorite = false;
+  console.log("isFavorite", isFavorite);
+  const favStar = isFavorite ? "fas" : "far";
+
+  return `
+    <i class="${favStar} fa-star"></i>
+  `;
+}
