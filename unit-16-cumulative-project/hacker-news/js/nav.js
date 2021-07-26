@@ -34,7 +34,7 @@ const navFavClick = (e) => {
 
 $navFav.on("click", navFavClick);
 
-// TODO: navMyStoriesClick(e){}
+// Done: navMyStoriesClick(e){}
 const navMyStoriesClick = (e) => {
   console.debug("navMyStoriesClick");
 

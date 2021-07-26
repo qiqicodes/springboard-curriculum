@@ -38,7 +38,7 @@ function putStoriesOnPage() {
 
 // TODO: modify this function to show Fav Stars - DONE, and Delete Button based on Boolean of currentUser variable
 // init currentUser as null
-function generateStoryMarkup(story) {
+function generateStoryMarkup(story, showDeleteButton = false) {
   console.debug("generateStoryMarkup");
 
   const hostName = story.getHostName();
@@ -47,6 +47,7 @@ function generateStoryMarkup(story) {
 
   return $(`
       <li id="${story.storyId}">
+      ${showDeleteButton ? deleteBtnHtml() : ""}
       ${loggedUser ? getStarHTML(story, currentUser) : ""}
         <a href="${story.url}" target="a_blank" class="story-link">
           ${story.title}
@@ -71,7 +72,9 @@ function getStarHTML(story, currentUser) {
 }
 
 const deleteBtnHtml = () => `
-  // some html
+  <span class="trash">
+    <i class="fas fa-trash"></i>
+  </span>
 `;
 
 // TODO: delete story
@@ -106,7 +109,7 @@ async function handleSubmitNewStory(e) {
 
 $submitStoryForm.on("submit", handleSubmitNewStory);
 
-// TODO: display User's story lists
+// Done: display User's story lists
 //currentUser.ownStories
 
 const putMyStoriesOnPage = () => {
@@ -119,7 +122,7 @@ const putMyStoriesOnPage = () => {
   // loop through all of my stories and generate HTML for them
   if (currentUser.ownStories.length !== 0) {
     for (let story of currentUser.ownStories) {
-      const $story = generateStoryMarkup(story);
+      const $story = generateStoryMarkup(story, true);
       $myStoriesList.append($story);
     }
   } else {
@@ -152,7 +155,7 @@ const putFavStoriesOnPage = () => {
   $favStoriesList.show();
 };
 
-// TODO: toggle story favorite stars on and off
+// Done: toggle story favorite stars on and off
 // toggle star style
 // modify fav story list by currentUser.addFavorite or currentUser.removeFavorite methods
 

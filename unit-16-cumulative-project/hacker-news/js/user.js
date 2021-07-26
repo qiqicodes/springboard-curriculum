@@ -107,9 +107,9 @@ function saveUserCredentialsInLocalStorage() {
  * - generate the user profile part of the page
  */
 
-// TODO: fix this to
+// Done: fix this to
 // 1. hide irrelevant information ie. hidePageComponents() DONE
-// TODO: 2. re-display the stories with favorite stars
+// 2. re-display the stories with favorite stars DONE
 // 3. generateUserProfile() DONE
 
 function updateUIOnUserLogin() {

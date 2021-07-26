@@ -71,7 +71,7 @@ class StoryList {
    * Returns the new Story instance
    */
 
-  // TODO: addStory function CHECK functionality
+  // Done: addStory function CHECK functionality
   async addStory(user, { title, author, url }) {
     const token = user.loginToken;
     const response = await axios({
@@ -255,7 +255,7 @@ class User {
     });
   }
 
-  // TODO: removeFavorite function
+  // Done: removeFavorite function
   // N> storyId, user username && Token
   // if filter story, remove story from favorites []
 
