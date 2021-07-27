@@ -32,7 +32,7 @@ const $navLogOut = $("#nav-logout");
  * calling this, individual components can re-show just what they want.
  */
 
-// TODO: hide all the components when signed in
+// DONE: hide all the components when signed in
 function hidePageComponents() {
   const components = [
     $storiesList,

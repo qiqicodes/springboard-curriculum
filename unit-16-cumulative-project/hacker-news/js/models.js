@@ -256,21 +256,33 @@ class User {
     }
   }
 
-  //TODO: FS Edit User Name
-  // async updateName(name) {
-  //   const token = this.loginToken;
+  //DONE: FS Edit User Name
+  async updateName(name) {
+    const token = this.loginToken;
+    console.log(token);
 
-  //   const response = await axios({
-  //     url: `${BASE_URL}/user/${this.username}`,
-  //     method: "PATCH",
-  //     data: { token, user: { name } },
-  //   });
+    const response = await axios({
+      url: `${BASE_URL}/users/${this.username}`,
+      method: "PATCH",
+      data: { token, user: { name } },
+    });
 
-  //   const { user } = response.data;
+    const { user } = response.data;
 
-  //   console.log(user);
-  //   return user;
-  // }
+    const updatedUser = new User(
+      {
+        username: user.username,
+        name: user.name,
+        createdAt: user.createdAt,
+        favorites: user.favorites,
+        ownStories: user.stories,
+      },
+      response.data.token
+    );
+
+    console.log(updatedUser);
+    return updatedUser;
+  }
 
   // Done: addFavorite function
 

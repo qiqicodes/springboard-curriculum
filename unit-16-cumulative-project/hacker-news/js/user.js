@@ -134,21 +134,32 @@ const generateUserProfile = () => {
   $("#user-profile-created-at").text(currentUser.createdAt.slice(0, 10));
 };
 
-// TODO: FS Edit User profile
+// DONE: FS Edit User profile
 // listen to $('#edit-user') click
+function displayUpdateForm() {
+  console.debug("displayUpdateForm");
 
-// const updateUserProfile = () => {
-//   console.debug("updateUserProfile");
+  hidePageComponents();
 
-//   hidePageComponents();
+  $("#current-name").attr("placeholder", currentUser.name);
 
-//   $("#current-name").attr("placeholder", currentUser.name);
-//   $updateUserName.show();
+  $updateUserName.show();
+}
 
-//   const val = $("new-name").val();
-//   currentUser.updateName(val);
+$("#edit-user").on("click", displayUpdateForm);
 
-//   generateUserProfile();
-// };
+async function updateUserProfile() {
+  console.debug("updateUserProfile");
 
-// $("#edit-user").on("click", updateUserProfile);
+  console.log(currentUser);
+  const val = $("#updated-name").val();
+  console.log(val);
+  currentUser = await currentUser.updateName(val);
+
+  $("#update-form").slideUp("slow");
+  $("#update-form").trigger("reset");
+
+  navProfileClick();
+}
+
+$("#update-form").on("submit", updateUserProfile);
