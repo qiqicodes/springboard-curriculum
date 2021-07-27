@@ -88,6 +88,17 @@ class StoryList {
 
     return story;
   }
+  //TODO: getStory
+
+  async getStory(storyId) {
+    const response = await axios({
+      url: `${BASE_URL}/stories/${storyId}`,
+      method: "GET",
+    });
+
+    console.log(response.data.story);
+    return response.data.story;
+  }
 
   // TODO: updateStory
   async updateStory(user, { title, author, url, storyId }) {

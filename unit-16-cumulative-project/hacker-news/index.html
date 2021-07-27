@@ -71,6 +71,30 @@
         <input type="submit" value="Submit" />
         <hr />
       </form>
+
+      <!-- DONE: updateStory form -->
+      <form id="update-story-form" class="hidden">
+        <div class="">
+          <label for="current-title">Current Title</label>
+          <input id="current-title" disabled />
+          <label for="update-title">New Title</label>
+          <input id="update-title" required placeholder="new story title" />
+        </div>
+        <div class="">
+          <label for="current-author">Current Author</label>
+          <input id="current-author" disabled />
+          <label for="update-author">New Author</label>
+          <input id="update-author" required placeholder="new author name" />
+        </div>
+        <div class="">
+          <label for="current-url">Current URL</label>
+          <input id="current-url" disabled />
+          <label for="update-url">New URL</label>
+          <input id="update-url" required placeholder="new story url" />
+        </div>
+        <input type="submit" value="Update Story" style="margin: auto" />
+        <hr style="margin: 16px" />
+      </form>
       <!-- loading message (removed by JS after stories loaded) -->
       <div id="stories-loading-msg">Loading&hellip;</div>
 

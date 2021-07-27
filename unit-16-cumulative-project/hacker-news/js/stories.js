@@ -92,10 +92,26 @@ const updateBtnHtml = () => `
 // dependent on user storylist.
 // N> storyId, token
 
+async function updateStory(e) {
+  console.debug("updateStory");
+  e.preventDefault();
+
+  const storyId = $(e.target).closest("li").attr("id");
+  const story = await storyList.getStory(storyId);
+
+  const { title, author, url } = story;
+  $("#current-title").val(title);
+  $("#current-author").val(author);
+  $("#current-url").val(url);
+  $("#update-story-form").show();
+}
+
+$body.on("click", ".edit", updateStory);
+
 async function deleteStory(e) {
   console.debug("deleteStory");
   e.preventDefault();
-  const closestLi = $(e.target).closest("li");
+
   const storyId = $(e.target).closest("li").attr("id");
 
   await storyList.removeStory(currentUser, storyId);
