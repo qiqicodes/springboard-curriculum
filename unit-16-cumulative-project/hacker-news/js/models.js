@@ -144,11 +144,20 @@ class User {
    */
 
   static async signup(username, password, name) {
-    const response = await axios({
-      url: `${BASE_URL}/signup`,
-      method: "POST",
-      data: { user: { username, password, name } },
-    });
+    try {
+      const response = await axios({
+        url: `${BASE_URL}/signup`,
+        method: "POST",
+        data: { user: { username, password, name } },
+      });
+    } catch (err) {
+      //FS add error handling - DONE
+      if (err.response.status === 409) {
+        alert("Username already taken, try a different username =]");
+        $signupForm.trigger("reset");
+        throw new Error("Username already taken");
+      }
+    }
 
     let { user } = response.data;
 
