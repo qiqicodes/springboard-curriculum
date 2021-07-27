@@ -38,7 +38,11 @@ function putStoriesOnPage() {
 
 // DONE: modify this function to show Fav Stars - DONE, and Delete Button - DONE based on Boolean of currentUser variable
 // init currentUser as null
-function generateStoryMarkup(story, showDeleteButton = false) {
+function generateStoryMarkup(
+  story,
+  showDeleteButton = false,
+  showUpdateButton = false
+) {
   console.debug("generateStoryMarkup");
 
   const hostName = story.getHostName();
@@ -54,6 +58,7 @@ function generateStoryMarkup(story, showDeleteButton = false) {
         </a>
         <small class="story-hostname">(${hostName})</small>
         <small class="story-author">by ${story.author}</small>
+        ${showUpdateButton ? updateBtnHtml() : ""}
         <small class="story-user">posted by ${story.username}</small>
       </li>
     `);
@@ -77,6 +82,11 @@ const deleteBtnHtml = () => `
   </span>
 `;
 
+const updateBtnHtml = () => `
+  <span class="edit">
+    <i class="far fa-edit"></i>
+  </span>
+`;
 // DONE: delete story
 // remove story from the array and dom
 // dependent on user storylist.
@@ -138,7 +148,7 @@ const putMyStoriesOnPage = () => {
   // loop through all of my stories and generate HTML for them
   if (currentUser.ownStories.length !== 0) {
     for (let story of currentUser.ownStories) {
-      const $story = generateStoryMarkup(story, true);
+      const $story = generateStoryMarkup(story, true, true);
       $myStoriesList.append($story);
     }
   } else {

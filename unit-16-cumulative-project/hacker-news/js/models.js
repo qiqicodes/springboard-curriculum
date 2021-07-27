@@ -89,6 +89,18 @@ class StoryList {
     return story;
   }
 
+  // TODO: updateStory
+  async updateStory(user, { title, author, url, storyId }) {
+    const token = user.loginToken;
+    const response = await axios({
+      url: `${BASE_URL}/stories/${storyId}`,
+      method: "PATCH",
+      data: { token, story: { author, title, url } },
+    });
+
+    console.log(response.data);
+  }
+
   // DONE: removeStory functions CHECK functionality
   async removeStory(user, storyId) {
     const token = user.loginToken;
