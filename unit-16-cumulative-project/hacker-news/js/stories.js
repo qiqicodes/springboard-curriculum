@@ -44,7 +44,7 @@ function generateStoryMarkup(
   showUpdateButton = false
 ) {
   console.debug("generateStoryMarkup");
-
+  console.log(story);
   const hostName = story.getHostName();
 
   const loggedUser = Boolean(currentUser);
@@ -92,8 +92,8 @@ const updateBtnHtml = () => `
 // dependent on user storylist.
 // N> storyId, token
 
-async function updateStory(e) {
-  console.debug("updateStory");
+async function getUpdateStoryForm(e) {
+  console.debug("getUpdateStoryForm");
   e.preventDefault();
 
   const storyId = $(e.target).closest("li").attr("id");
@@ -103,10 +103,42 @@ async function updateStory(e) {
   $("#current-title").val(title);
   $("#current-author").val(author);
   $("#current-url").val(url);
+  $("#update-story-form").attr("class", storyId);
   $("#update-story-form").show();
 }
 
-$body.on("click", ".edit", updateStory);
+$body.on("click", ".edit", getUpdateStoryForm);
+
+async function updateStory(e) {
+  console.debug("updateStory");
+  e.preventDefault();
+
+  const storyId = $(e.target).closest("form").attr("class");
+  console.log(storyId);
+  console.log(storyList);
+  console.log(currentUser);
+
+  const title = $("#update-title").val();
+  const author = $("#update-author").val();
+  const url = $("#update-url").val();
+  const data = { title, author, url, storyId };
+  const story = await storyList.updateStory(currentUser, data);
+
+  currentUser.ownStories = currentUser.ownStories.filter(
+    (s) => s.storyId !== storyId
+  );
+
+  currentUser.ownStories.unshift(story);
+
+  const $story = generateStoryMarkup(story, true, true);
+  $myStoriesList.prepend($story);
+  // }
+
+  $("#update-story-form").slideUp("slow");
+  $("#update-story-form").trigger("reset");
+}
+
+$("#update-story-form").on("submit", updateStory);
 
 async function deleteStory(e) {
   console.debug("deleteStory");

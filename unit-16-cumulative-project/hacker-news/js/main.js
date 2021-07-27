@@ -41,6 +41,7 @@ function hidePageComponents() {
     $signupForm,
     $updateUserName,
     $userProfile,
+    $("#update-story-form"),
   ];
   components.forEach((c) => c.hide());
 }

@@ -86,9 +86,10 @@ class StoryList {
     this.stories.unshift(story);
     user.ownStories.unshift(story);
 
+    console.log(story);
     return story;
   }
-  //TODO: getStory
+  //DONE: getStory
 
   async getStory(storyId) {
     const response = await axios({
@@ -100,7 +101,7 @@ class StoryList {
     return response.data.story;
   }
 
-  // TODO: updateStory
+  // DONE: updateStory
   async updateStory(user, { title, author, url, storyId }) {
     const token = user.loginToken;
     const response = await axios({
@@ -109,7 +110,9 @@ class StoryList {
       data: { token, story: { author, title, url } },
     });
 
-    console.log(response.data);
+    const updatedStory = new Story(response.data.story);
+
+    return updatedStory;
   }
 
   // DONE: removeStory functions CHECK functionality
