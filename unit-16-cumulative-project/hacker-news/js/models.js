@@ -80,13 +80,10 @@ class StoryList {
       data: { token, story: { author, title, url } },
     });
 
-    // console.log(response.data);
-
     const story = new Story(response.data.story);
     this.stories.unshift(story);
     user.ownStories.unshift(story);
 
-    console.log(story);
     return story;
   }
   //DONE: getStory
@@ -97,7 +94,6 @@ class StoryList {
       method: "GET",
     });
 
-    console.log(response.data.story);
     return response.data.story;
   }
 
@@ -176,6 +172,18 @@ class User {
         method: "POST",
         data: { user: { username, password, name } },
       });
+      let { user } = response.data;
+
+      return new User(
+        {
+          username: user.username,
+          name: user.name,
+          createdAt: user.createdAt,
+          favorites: user.favorites,
+          ownStories: user.stories,
+        },
+        response.data.token
+      );
     } catch (err) {
       //FS add error handling - DONE
       if (err.response.status === 409) {
@@ -184,19 +192,6 @@ class User {
         throw new Error("Username already taken");
       }
     }
-
-    let { user } = response.data;
-
-    return new User(
-      {
-        username: user.username,
-        name: user.name,
-        createdAt: user.createdAt,
-        favorites: user.favorites,
-        ownStories: user.stories,
-      },
-      response.data.token
-    );
   }
 
   /** Login in user with API, make User instance & return it.
@@ -259,7 +254,6 @@ class User {
   //DONE: FS Edit User Name
   async updateName(name) {
     const token = this.loginToken;
-    console.log(token);
 
     const response = await axios({
       url: `${BASE_URL}/users/${this.username}`,
@@ -277,44 +271,11 @@ class User {
         favorites: user.favorites,
         ownStories: user.stories,
       },
-      response.data.token
+      token
     );
 
-    console.log(updatedUser);
     return updatedUser;
   }
-
-  // // Done: addFavorite function
-
-  // // N> storyId, user username && Token
-  // // if true, push story to favorites []
-
-  // async addFavorite(story) {
-  //   const token = this.loginToken;
-
-  //   console.log(this.favorites);
-
-  //   await axios({
-  //     url: `${BASE_URL}/users/${this.username}/favorites/${story.storyId}`,
-  //     method: "POST",
-  //     data: { token },
-  //   });
-  // }
-
-  // // Done: removeFavorite function
-  // // N> storyId, user username && Token
-  // // if filter story, remove story from favorites []
-
-  // async removeFavorite(story) {
-  //   const token = this.loginToken;
-
-  //   await axios({
-  //     url: `${BASE_URL}/users/${this.username}/favorites/${story.storyId}`,
-  //     method: "DELETE",
-  //     data: { token },
-  //   });
-  //   console.log(this.favorites);
-  // }
 
   async addOrRemoveFavorite(state, story) {
     const method = state === "add" ? "POST" : "DELETE";
@@ -329,7 +290,6 @@ class User {
 
   // Done: isFavorite function
   isFavorite(story) {
-    // return this.favorites
     return this.favorites.find((s) => s.storyId === story.storyId);
   }
 }

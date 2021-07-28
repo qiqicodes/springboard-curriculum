@@ -78,7 +78,6 @@ async function checkForRememberedUser() {
   const username = localStorage.getItem("username");
   if (!token || !username) return false;
 
-  // try to log in with these credentials (will be null if login failed)
   currentUser = await User.loginViaStoredCredentials(token, username);
 }
 
@@ -135,14 +134,13 @@ const generateUserProfile = () => {
 };
 
 // DONE: FS Edit User profile
-// listen to $('#edit-user') click
+
 function displayUpdateForm() {
   console.debug("displayUpdateForm");
 
   hidePageComponents();
 
   $("#current-name").attr("placeholder", currentUser.name);
-
   $updateUserName.show();
 }
 
@@ -151,15 +149,14 @@ $("#edit-user").on("click", displayUpdateForm);
 async function updateUserProfile() {
   console.debug("updateUserProfile");
 
-  console.log(currentUser);
   const val = $("#updated-name").val();
-  console.log(val);
   currentUser = await currentUser.updateName(val);
 
-  $("#update-form").slideUp("slow");
-  $("#update-form").trigger("reset");
+  $updateUserName.slideUp("slow");
+  $updateUserName.trigger("reset");
 
+  generateUserProfile();
   navProfileClick();
 }
 
-$("#update-form").on("submit", updateUserProfile);
+$updateUserName.on("submit", updateUserProfile);

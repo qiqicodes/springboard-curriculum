@@ -1,26 +1,19 @@
 "use strict";
 
-// This is the global list of the stories, an instance of StoryList
 let storyList;
-
-/** Get and show stories when site first loads. */
 
 async function getAndShowStoriesOnStart() {
   storyList = await StoryList.getStories();
-  console.log("storyList", storyList);
   $storiesLoadingMsg.remove();
 
   putStoriesOnPage();
 }
-
-/** Gets list of stories from server, generates their HTML, and puts on page. */
 
 function putStoriesOnPage() {
   console.debug("putStoriesOnPage");
 
   $allStoriesList.empty();
 
-  // loop through all of our stories and generate HTML for them
   for (let story of storyList.stories) {
     const $story = generateStoryMarkup(story);
     $allStoriesList.append($story);
@@ -40,7 +33,6 @@ function putStoriesOnPage() {
 // init currentUser as null
 function generateStoryMarkup(story, loggedInUser = false) {
   console.debug("generateStoryMarkup");
-  console.log(story);
   const hostName = story.getHostName();
 
   const loggedUser = Boolean(currentUser);
@@ -62,7 +54,7 @@ function generateStoryMarkup(story, loggedInUser = false) {
 
 function getStarHTML(story, currentUser) {
   const isFavorite = currentUser.isFavorite(story);
-  // console.log("isFavorite", isFavorite);
+
   const favStar = isFavorite ? "fas" : "far";
 
   return `
@@ -99,8 +91,8 @@ async function getUpdateStoryForm(e) {
   $("#current-title").val(title);
   $("#current-author").val(author);
   $("#current-url").val(url);
-  $("#update-story-form").attr("class", storyId);
-  $("#update-story-form").show();
+  $updateStoryForm.attr("class", storyId);
+  $updateStoryForm.show();
 }
 
 $body.on("click", ".edit", getUpdateStoryForm);
@@ -110,10 +102,6 @@ async function updateStory(e) {
   e.preventDefault();
 
   const storyId = $(e.target).closest("form").attr("class");
-  console.log(storyId);
-  console.log(storyList);
-  console.log(currentUser);
-
   const title = $("#update-title").val();
   const author = $("#update-author").val();
   const url = $("#update-url").val();
@@ -128,8 +116,8 @@ async function updateStory(e) {
 
   putMyStoriesOnPage();
 
-  $("#update-story-form").slideUp("slow");
-  $("#update-story-form").trigger("reset");
+  $updateStoryForm.slideUp("slow");
+  $updateStoryForm.trigger("reset");
 }
 
 $("#update-story-form").on("submit", updateStory);
@@ -141,8 +129,6 @@ async function deleteStory(e) {
   const storyId = $(e.target).closest("li").attr("id");
 
   await storyList.removeStory(currentUser, storyId);
-
-  console.log(currentUser.ownStories);
 
   putMyStoriesOnPage();
 }
@@ -163,10 +149,7 @@ async function handleSubmitNewStory(e) {
   const author = $("#new-author").val();
   const url = $("#new-url").val();
   const data = { title, author, url };
-  // console.log(data, currentUser.loginToken);
   const story = await storyList.addStory(currentUser, data);
-
-  // console.log(story);
 
   const $story = generateStoryMarkup(story);
   $allStoriesList.prepend($story);
@@ -185,9 +168,6 @@ const putMyStoriesOnPage = () => {
 
   $myStoriesList.empty();
 
-  console.log(currentUser);
-
-  // loop through all of my stories and generate HTML for them
   if (currentUser.ownStories.length !== 0) {
     for (let story of currentUser.ownStories) {
       const $story = generateStoryMarkup(story, true);
@@ -208,7 +188,6 @@ const putFavStoriesOnPage = () => {
 
   $favStoriesList.empty();
 
-  // loop through all of fav stories and generate HTML for them
   if (currentUser.favorites.length !== 0) {
     for (let story of currentUser.favorites) {
       const $story = generateStoryMarkup(story);
@@ -233,9 +212,6 @@ async function favStarToggle(e) {
   const $target = $(e.target);
   const storyId = $target.closest("li").attr("id");
   const story = storyList.stories.find((story) => story.storyId === storyId);
-
-  console.log(story);
-  console.log(currentUser);
 
   if ($target.hasClass("far")) {
     currentUser.favorites.push(story);

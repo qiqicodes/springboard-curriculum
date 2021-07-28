@@ -1,8 +1,5 @@
 "use strict";
 
-// So we don't have to keep re-finding things on page, find DOM elements once:
-
-// TODO: assign all elements to jQuery
 const $body = $("body");
 
 const $storiesLoadingMsg = $("#stories-loading-msg");
@@ -17,6 +14,7 @@ const $submitStoryForm = $("#submit-story-form");
 
 const $navFav = $("#nav-favorites");
 const $navOwnStories = $("#nav-own-stories");
+const $updateStoryForm = $("#update-story-form");
 
 const $loginForm = $("#login-form");
 const $signupForm = $("#signup-form");
@@ -27,12 +25,6 @@ const $navUserProfile = $("#nav-user-profile");
 const $updateUserName = $("#update-form");
 const $navLogOut = $("#nav-logout");
 
-/** To make it easier for individual components to show just themselves, this
- * is a useful function that hides pretty much everything on the page. After
- * calling this, individual components can re-show just what they want.
- */
-
-// DONE: hide all the components when signed in
 function hidePageComponents() {
   const components = [
     $storiesList,
@@ -42,7 +34,7 @@ function hidePageComponents() {
     $updateUserName,
     $userProfile,
     $favStoriesList,
-    $("#update-story-form"),
+    $updateStoryForm,
   ];
   components.forEach((c) => c.hide());
 }
