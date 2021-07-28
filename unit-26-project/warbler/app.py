@@ -294,6 +294,23 @@ def messages_show(message_id):
     msg = Message.query.get(message_id)
     return render_template('messages/show.html', message=msg)
 
+@app.route('/messages/<int:message_id>/like', method=['POST'])
+def messages_like(message_id):
+    """toggle like to a message for logged in user."""
+
+    if not g.user:
+        flash("Access unauthorized.", "danger")
+        return redirect("/")
+
+#TODO: message, likes, users figure out the logic for this
+
+
+    db.session.commit()
+
+    return redirect("/")
+
+
+@app.route('/messages/<int:message_id>/unlike', methods=['POST'])
 
 @app.route('/messages/<int:message_id>/delete', methods=["POST"])
 def messages_destroy(message_id):

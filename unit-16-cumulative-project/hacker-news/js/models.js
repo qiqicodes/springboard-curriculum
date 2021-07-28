@@ -284,40 +284,47 @@ class User {
     return updatedUser;
   }
 
-  // Done: addFavorite function
+  // // Done: addFavorite function
 
-  // N> storyId, user username && Token
-  // if true, push story to favorites []
+  // // N> storyId, user username && Token
+  // // if true, push story to favorites []
 
-  async addFavorite(story) {
+  // async addFavorite(story) {
+  //   const token = this.loginToken;
+
+  //   console.log(this.favorites);
+
+  //   await axios({
+  //     url: `${BASE_URL}/users/${this.username}/favorites/${story.storyId}`,
+  //     method: "POST",
+  //     data: { token },
+  //   });
+  // }
+
+  // // Done: removeFavorite function
+  // // N> storyId, user username && Token
+  // // if filter story, remove story from favorites []
+
+  // async removeFavorite(story) {
+  //   const token = this.loginToken;
+
+  //   await axios({
+  //     url: `${BASE_URL}/users/${this.username}/favorites/${story.storyId}`,
+  //     method: "DELETE",
+  //     data: { token },
+  //   });
+  //   console.log(this.favorites);
+  // }
+
+  async addOrRemoveFavorite(state, story) {
+    const method = state === "add" ? "POST" : "DELETE";
     const token = this.loginToken;
-
-    this.favorites.push(story);
-    console.log(this.favorites);
 
     await axios({
       url: `${BASE_URL}/users/${this.username}/favorites/${story.storyId}`,
-      method: "POST",
+      method: method,
       data: { token },
     });
-  }
-
-  // Done: removeFavorite function
-  // N> storyId, user username && Token
-  // if filter story, remove story from favorites []
-
-  async removeFavorite(story) {
-    const token = this.loginToken;
-    console.log(this.favorites);
-
-    this.favorites = this.favorites.filter((s) => s.storyId !== story.storyId);
-
-    await axios({
-      url: `${BASE_URL}/users/${this.username}/favorites/${story.storyId}`,
-      method: "DELETE",
-      data: { token },
-    });
-    console.log(this.favorites);
   }
 
   // Done: isFavorite function

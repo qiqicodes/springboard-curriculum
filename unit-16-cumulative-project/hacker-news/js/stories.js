@@ -38,11 +38,7 @@ function putStoriesOnPage() {
 
 // DONE: modify this function to show Fav Stars - DONE, and Delete Button - DONE based on Boolean of currentUser variable
 // init currentUser as null
-function generateStoryMarkup(
-  story,
-  showDeleteButton = false,
-  showUpdateButton = false
-) {
+function generateStoryMarkup(story, loggedInUser = false) {
   console.debug("generateStoryMarkup");
   console.log(story);
   const hostName = story.getHostName();
@@ -51,14 +47,14 @@ function generateStoryMarkup(
 
   return $(`
       <li id="${story.storyId}">
-      ${showDeleteButton ? deleteBtnHtml() : ""}
+      ${loggedInUser ? deleteBtnHtml() : ""}
       ${loggedUser ? getStarHTML(story, currentUser) : ""}
         <a href="${story.url}" target="a_blank" class="story-link">
           ${story.title}
         </a>
         <small class="story-hostname">(${hostName})</small>
         <small class="story-author">by ${story.author}</small>
-        ${showUpdateButton ? updateBtnHtml() : ""}
+        ${loggedInUser ? updateBtnHtml() : ""}
         <small class="story-user">posted by ${story.username}</small>
       </li>
     `);
@@ -130,9 +126,7 @@ async function updateStory(e) {
 
   currentUser.ownStories.unshift(story);
 
-  const $story = generateStoryMarkup(story, true, true);
-  $myStoriesList.prepend($story);
-  // }
+  putMyStoriesOnPage();
 
   $("#update-story-form").slideUp("slow");
   $("#update-story-form").trigger("reset");
@@ -196,7 +190,7 @@ const putMyStoriesOnPage = () => {
   // loop through all of my stories and generate HTML for them
   if (currentUser.ownStories.length !== 0) {
     for (let story of currentUser.ownStories) {
-      const $story = generateStoryMarkup(story, true, true);
+      const $story = generateStoryMarkup(story, true);
       $myStoriesList.append($story);
     }
   } else {
@@ -237,18 +231,22 @@ async function favStarToggle(e) {
   console.debug("favStarToggle");
 
   const $target = $(e.target);
-  const closestLi = $target.closest("li");
-  const storyId = closestLi.attr("id");
+  const storyId = $target.closest("li").attr("id");
   const story = storyList.stories.find((story) => story.storyId === storyId);
 
   console.log(story);
   console.log(currentUser);
 
   if ($target.hasClass("far")) {
-    await currentUser.addFavorite(story);
+    currentUser.favorites.push(story);
+    await currentUser.addOrRemoveFavorite("add", story);
     $target.closest("i").toggleClass("far fas");
   } else {
-    await currentUser.removeFavorite(story);
+    currentUser.favorites = currentUser.favorites.filter(
+      (s) => s.storyId !== storyId
+    );
+
+    await currentUser.addOrRemoveFavorite("remove", story);
     $target.closest("i").toggleClass("fas far");
     putFavStoriesOnPage();
   }
