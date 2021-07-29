@@ -156,7 +156,7 @@ def users_show(user_id):
                 .limit(100)
                 .all())
 
-    likes = [ message.id for message in user.likes]
+    likes = [ message.id for message in g.user.likes]
     return render_template('users/show.html', user=user, messages=messages, likes=likes)
 
 
@@ -380,7 +380,8 @@ def homepage():
                     .limit(100)
                     .all())
 
-        return render_template('home.html', messages=messages)
+        likes = [ message.id for message in g.user.likes]
+        return render_template('home.html', messages=messages, likes=likes)
 
     else:
         return render_template('home-anon.html')
