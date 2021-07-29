@@ -160,6 +160,16 @@ def users_show(user_id):
     return render_template('users/show.html', user=user, messages=messages, likes=likes)
 
 
+@app.route('/users/<int:user_id>/likes', methods=['GET'])
+def show_likes(user_id):
+    """Show list of user's liked messages."""
+
+    user = User.query.get_or_404(user_id)
+
+    likes = [ msg for msg in user.likes]
+
+    return render_template('users/likes.html', user=user, likes=likes)
+
 @app.route('/users/<int:user_id>/following')
 def show_following(user_id):
     """Show list of people this user is following."""
