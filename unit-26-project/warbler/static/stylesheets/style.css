@@ -525,13 +525,9 @@ p.card-bio {
 /* ================================ 404 page */
 
 .message-404 {
-  color: white;
+  color: black;
   margin-top: 2em;
   text-align: center;
-}
-
-.message-404 a {
-  color: white;
 }
 
 .message-404 > h4.display-4 {
