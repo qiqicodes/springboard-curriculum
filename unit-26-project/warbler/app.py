@@ -1,7 +1,7 @@
 import os
-from re import U
+from re import L, U
 
-from flask import Flask, render_template, request, flash, redirect, session, g
+from flask import Flask, render_template, request, flash, redirect, session, g, abort
 from flask_debugtoolbar import DebugToolbarExtension
 from sqlalchemy.exc import IntegrityError
 
@@ -35,7 +35,7 @@ def add_user_to_g():
     """If we're logged in, add curr user to Flask global."""
 
     if CURR_USER_KEY in session:
-        g.user = User.query.get(session[CURR_USER_KEY])
+        g.user = User.query.get_or_404(session[CURR_USER_KEY])
 
     else:
         g.user = None
@@ -155,7 +155,9 @@ def users_show(user_id):
                 .order_by(Message.timestamp.desc())
                 .limit(100)
                 .all())
-    return render_template('users/show.html', user=user, messages=messages)
+
+    likes = [ message.id for message in user.likes]
+    return render_template('users/show.html', user=user, messages=messages, likes=likes)
 
 
 @app.route('/users/<int:user_id>/following')
@@ -205,7 +207,7 @@ def stop_following(follow_id):
         flash("Access unauthorized.", "danger")
         return redirect("/")
 
-    followed_user = User.query.get(follow_id)
+    followed_user = User.query.get_or_404(follow_id)
     g.user.following.remove(followed_user)
     db.session.commit()
 
@@ -291,10 +293,10 @@ def messages_add():
 def messages_show(message_id):
     """Show a message."""
 
-    msg = Message.query.get(message_id)
+    msg = Message.query.get_or_404(message_id)
     return render_template('messages/show.html', message=msg)
 
-@app.route('/messages/<int:message_id>/like', method=['POST'])
+@app.route('/messages/<int:message_id>/like', methods=['POST'])
 def messages_like(message_id):
     """toggle like to a message for logged in user."""
 
@@ -302,8 +304,24 @@ def messages_like(message_id):
         flash("Access unauthorized.", "danger")
         return redirect("/")
 
-#TODO: message, likes, users figure out the logic for this
+    liked_msg = Message.query.get_or_404(message_id)
 
+    print("########################")
+
+    print(message_id)
+    print(liked_msg)
+    print(liked_msg.user_id)
+    print(g.user.id)
+
+    if liked_msg.user_id == g.user.id:
+        return abort(403)
+
+    user_liked_msg = g.user.likes
+
+    if liked_msg in user_liked_msg:
+        g.user.likes = [like for like in user_liked_msg if like != liked_msg]
+    else:
+        g.user.likes.append(liked_msg)
 
     db.session.commit()
 
@@ -320,7 +338,7 @@ def messages_destroy(message_id):
         flash("Access unauthorized.", "danger")
         return redirect("/")
 
-    msg = Message.query.get(message_id)
+    msg = Message.query.get_or_404(message_id)
     db.session.delete(msg)
     db.session.commit()
 

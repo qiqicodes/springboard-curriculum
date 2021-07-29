@@ -23,16 +23,19 @@
       </div>
 
       {% if g.user.id != message.user.id %}
-      <form class="like" method="post" action="/messages/{{ message.id }}/like">
+      <form
+        style="z-index: 10"
+        method="POST"
+        action="/messages/{{ message.id }}/like"
+      >
         <button
-          class="btn btn-md {{ 'btn-primary' if message.id in likes else 'btn-danger' }}"
+          class="btn btn-sm {{ 'btn-danger' if message.id in likes else 'btn-secondary' }}"
         >
-          <i class="fa fa-star"></i>
+          <i class="fa fa-heart"></i>
         </button>
       </form>
       {% endif %}
     </li>
-
     {% endfor %}
   </ul>
 </div>
