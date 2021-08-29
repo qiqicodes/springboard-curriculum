@@ -2,7 +2,7 @@
 
 # run these tests like:
 #
-#    python -m unittest test_user_model.py
+#   FLASK_ENV=production python -m unittest test_user_model.py
 
 
 import os
@@ -34,12 +34,20 @@ class UserModelTestCase(TestCase):
 
     def setUp(self):
         """Create test client, add sample data."""
+        
+        db.drop_all()
+        db.create_all()
 
         User.query.delete()
         Message.query.delete()
         Follows.query.delete()
 
         self.client = app.test_client()
+
+    def tearDown(self):
+        """Drop all tables."""
+        db.session.rollback()
+
 
     def test_user_model(self):
         """Does basic model work?"""
@@ -56,3 +64,33 @@ class UserModelTestCase(TestCase):
         # User should have no messages & no followers
         self.assertEqual(len(u.messages), 0)
         self.assertEqual(len(u.followers), 0)
+
+
+
+    # Does the repr method work as expected?
+    def test_repr(self):
+        """Does the repr method work?"""
+
+        u = User(
+            email="test@test.com",
+            username="testuser",
+            password="HASHED_PASSWORD"
+        )
+        db.session.add(u)
+        db.session.commit()
+
+        self.assertEqual(u.__repr__(), "<User #1: testuser, test@test.com>")
+
+
+# TODO: setUp & tearDown
+# TODO: testcases following
+
+# Does is_following successfully detect when user1 is following user2?
+# Does is_following successfully detect when user1 is not following user2?
+# Does is_followed_by successfully detect when user1 is followed by user2?
+# Does is_followed_by successfully detect when user1 is not followed by user2?
+# Does User.create successfully create a new user given valid credentials?
+# Does User.create fail to create a new user if any of the validations (e.g. uniqueness, non-nullable fields) fail?
+# Does User.authenticate successfully return a user when given a valid username and password?
+# Does User.authenticate fail to return a user when the username is invalid?
+# Does User.authenticate fail to return a user when the password is invalid?
