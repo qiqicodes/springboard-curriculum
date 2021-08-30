@@ -5,9 +5,8 @@
 // Time Complexity: O(log N)
 
 function countZeroes(arr) {
-  // [1,1,1,1,0,0]
   let left = 0;
-  let right = arr.length - 1; //5
+  let right = arr.length - 1;
   let mid;
   let numZeroes = 0;
 
@@ -16,18 +15,14 @@ function countZeroes(arr) {
   }
 
   while (left <= right) {
-    //3<=5
-    mid = Math.floor((left + right) / 2); //4
+    mid = Math.floor((left + right) / 2);
     if (arr[mid] === 0) {
-      //0
-      right = mid - 1; //3
+      right = mid - 1;
       if (arr[right] === 1) {
-        //t
         numZeroes = arr.length - mid;
       }
     } else {
-      //1
-      left = mid + 1; //3
+      left = mid + 1;
       if (arr[left] === 0) {
         numZeroes = arr.length - left;
       }
