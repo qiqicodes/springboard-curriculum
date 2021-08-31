@@ -6,7 +6,43 @@
 
 // Time Complexity: O(log N)
 
-function findRotatedIndex(arr, num) {}
+function findRotatedIndex(arr, num) {
+  let left = 0;
+  let right = arr.length - 1;
+  let mid;
+
+  let zeroIndex = findPivot(arr);
+
+  if (num > arr[left] && num > arr[right]) {
+  }
+
+  if (num < arr[left] && num < arr[right]) {
+  }
+
+  return -1;
+}
+
+function findPivot(arr) {
+  let left = 0;
+  let right = arr.length - 1;
+  let mid;
+
+  while (left <= right) {
+    mid = Math.floor((left + right) / 2);
+
+    if (arr[mid] < arr[left] && arr[mid] < arr[right]) {
+      right = mid - 1;
+      if (arr[right] > arr[mid]) {
+        return mid;
+      }
+    } else if (arr[mid] > arr[left] && arr[mid] > arr[right]) {
+      left = mid + 1;
+      if (arr[left] < arr[mid]) {
+        return left;
+      }
+    }
+  }
+}
 
 module.exports = findRotatedIndex;
 

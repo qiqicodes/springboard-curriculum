@@ -25,7 +25,6 @@ function sortedFrequency(arr, num) {
       break;
     }
   }
-  console.log(somewhereMiddleRef, "somewhereMiddleRef");
 
   left = somewhereMiddleRef;
   right = arr.length - 1;
@@ -49,7 +48,6 @@ function sortedFrequency(arr, num) {
       }
     }
   }
-  console.log(rightRef, "rightRef");
 
   left = 0;
   right = somewhereMiddleRef;
@@ -74,7 +72,6 @@ function sortedFrequency(arr, num) {
       }
     }
   }
-  console.log(leftRef, "leftRef");
 
   count = rightRef - leftRef + 1;
 
