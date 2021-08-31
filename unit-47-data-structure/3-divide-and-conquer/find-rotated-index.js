@@ -38,12 +38,12 @@ function findPivot(arr) {
   while (left <= right) {
     mid = Math.floor((left + right) / 2);
 
-    if (arr[mid] < arr[left] && arr[mid] < arr[right]) {
+    if (arr[mid] < arr[right]) {
       right = mid - 1;
       if (arr[right] > arr[mid]) {
         return mid;
       }
-    } else if (arr[mid] > arr[left] && arr[mid] > arr[right]) {
+    } else if (arr[mid] > arr[left]) {
       left = mid + 1;
       if (arr[left] < arr[mid]) {
         return left;
