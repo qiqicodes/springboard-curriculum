@@ -21,56 +21,50 @@ class LinkedList {
   /** push(val): add new value to end of list. */
 
   push(val) {
+    let newNode = new Node(val);
 
+    if (this.head) {
+      this.tail.next = newNode;
+      this.tail = newNode;
+    } else {
+      this.head = newNode;
+      this.tail = this.head;
+    }
+
+    this.length++;
   }
 
   /** unshift(val): add new value to start of list. */
 
-  unshift(val) {
+  // unshift(val) {}
 
-  }
+  // /** pop(): return & remove last item. */
 
-  /** pop(): return & remove last item. */
+  // pop() {}
 
-  pop() {
+  // /** shift(): return & remove first item. */
 
-  }
+  // shift() {}
 
-  /** shift(): return & remove first item. */
+  // /** getAt(idx): get val at idx. */
 
-  shift() {
+  // getAt(idx) {}
 
-  }
+  // /** setAt(idx, val): set val at idx to val */
 
-  /** getAt(idx): get val at idx. */
+  // setAt(idx, val) {}
 
-  getAt(idx) {
+  // /** insertAt(idx, val): add node w/val before idx. */
 
-  }
+  // insertAt(idx, val) {}
 
-  /** setAt(idx, val): set val at idx to val */
+  // /** removeAt(idx): return & remove item at idx, */
 
-  setAt(idx, val) {
+  // removeAt(idx) {}
 
-  }
+  // /** average(): return an average of all values in the list */
 
-  /** insertAt(idx, val): add node w/val before idx. */
-
-  insertAt(idx, val) {
-
-  }
-
-  /** removeAt(idx): return & remove item at idx, */
-
-  removeAt(idx) {
-
-  }
-
-  /** average(): return an average of all values in the list */
-
-  average() {
-    
-  }
+  // average() {}
 }
 
 module.exports = LinkedList;
