@@ -1,6 +1,10 @@
 /** product: calculate the product of an array of numbers. */
 
-function product(nums) {}
+function product(nums) {
+  if (nums.length === 0) return 1;
+
+  return nums[0] * product(nums.slice(1));
+}
 
 product([2, 3, 4]); //24
 product([1, -1, 1, -1, 1, -1]); //-1
@@ -8,7 +12,11 @@ product([10]); //10
 
 /** longest: return the length of the longest word in an array of words. */
 
-function longest(words) {}
+function longest(words) {
+  if (words.length === 1) return words[0].length;
+
+  return Math.max(words[0].length, longest(words.slice(1)));
+}
 longest(["hello", "hi", "hola"]); //5
 longest(["abcdefg", "hijklmnop", "qrs", "tuv", "wx", "y", "z"]); //9
 longest(["a", "b", "c", "d", "e"]); //1
@@ -16,7 +24,11 @@ longest(["abcde"]); //5
 
 /** everyOther: return a string with every other letter. */
 
-function everyOther(str) {}
+function everyOther(str) {
+  if (str.length <= 2) return str[0];
+
+  return str[0] + everyOther(str.slice(2));
+}
 everyOther("hello"); //"hlo"
 everyOther("banana stand"); //"bnn tn"
 everyOther("ddoouubbllee"); //"double"
