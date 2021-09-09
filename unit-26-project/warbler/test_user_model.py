@@ -52,18 +52,18 @@ class UserModelTestCase(TestCase):
     def test_user_model(self):
         """Does basic model work?"""
 
-        u = User(
+        user = User(
             email="test@test.com",
             username="testuser",
-            password="HASHED_PASSWORD"
+            password="testtest"
         )
 
-        db.session.add(u)
+        db.session.add(user)
         db.session.commit()
 
         # User should have no messages & no followers
-        self.assertEqual(len(u.messages), 0)
-        self.assertEqual(len(u.followers), 0)
+        self.assertEqual(len(user.messages), 0)
+        self.assertEqual(len(user.followers), 0)
 
 
 
@@ -71,15 +71,15 @@ class UserModelTestCase(TestCase):
     def test_repr(self):
         """Does the repr method work?"""
 
-        u = User(
+        user = User(
             email="test@test.com",
             username="testuser",
-            password="HASHED_PASSWORD"
+            password="testtest"
         )
-        db.session.add(u)
+        db.session.add(user)
         db.session.commit()
 
-        self.assertEqual(u.__repr__(), "<User #1: testuser, test@test.com>")
+        self.assertEqual(user.__repr__(), "<User #1: testuser, test@test.com>")
 
 
 # TODO: setUp & tearDown
