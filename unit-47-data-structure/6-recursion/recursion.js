@@ -69,14 +69,19 @@ findIndex(["duck", "cat", "pony", "cat"], "pony"); //2
 findIndex(["duck", "cat", "pony", "cat"], "porcupine"); //-1
 findIndex(["duck", "cat", "pony", "cat"], "turtle"); //-1
 
-// /** revString: return a copy of a string, but in reverse. */
+/** revString: return a copy of a string, but in reverse. */
 
-// function revString(str) {}
+function revString(str, index = 0, newStr = "") {
+  if (index === str.length) return newStr;
+  newStr += str[str.length - index - 1];
 
-// revString("porcupine"); // "enipucrop"
-// revString("duck"); //"kcud"
-// revString("cat"); //"tac"
-// revString("pony"); //"ynop"
+  return revString(str, index + 1, newStr);
+}
+
+revString("porcupine"); // "enipucrop"
+revString("duck"); //"kcud"
+revString("cat"); //"tac"
+revString("pony"); //"ynop"
 
 // /** gatherStrings: given an object, return an array of all of the string values. */
 
@@ -99,7 +104,7 @@ module.exports = {
   everyOther,
   isPalindrome,
   findIndex,
-  // revString,
+  revString,
   // gatherStrings,
   // binarySearch,
 };
