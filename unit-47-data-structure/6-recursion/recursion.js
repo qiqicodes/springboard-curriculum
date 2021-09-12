@@ -83,20 +83,31 @@ revString("duck"); //"kcud"
 revString("cat"); //"tac"
 revString("pony"); //"ynop"
 
-// /** gatherStrings: given an object, return an array of all of the string values. */
+/** gatherStrings: given an object, return an array of all of the string values. */
 
-// function gatherStrings(obj) {}
+function gatherStrings(obj) {
+  const arr = [];
+  for (let key in obj) {
+    if (typeof obj[key] === "string") {
+      arr.push(obj[key]);
+    }
+    if (typeof obj[key] === "object") {
+      arr.push(...gatherStrings(obj[key]));
+    }
+  }
+  return arr;
+}
 
-// /** binarySearch: given a sorted array of numbers, and a value,
-//  * return the index of that value (or -1 if val is not present). */
+/** binarySearch: given a sorted array of numbers, and a value,
+ * return the index of that value (or -1 if val is not present). */
 
-// function binarySearch(arr, val) {}
+function binarySearch(arr, val) {}
 
-// binarySearch([1, 2, 3, 4], 4); //3
-// binarySearch([1, 2], 1); //0
-// binarySearch([1, 2, 3, 4, 5, 6, 7], 6); //5
-// binarySearch([1, 2, 3, 4], 0); //-1
-// binarySearch([1, 2], 11); //-1
+binarySearch([1, 2, 3, 4], 4); //3
+binarySearch([1, 2], 1); //0
+binarySearch([1, 2, 3, 4, 5, 6, 7], 6); //5
+binarySearch([1, 2, 3, 4], 0); //-1
+binarySearch([1, 2], 11); //-1
 
 module.exports = {
   product,
@@ -105,6 +116,6 @@ module.exports = {
   isPalindrome,
   findIndex,
   revString,
-  // gatherStrings,
-  // binarySearch,
+  gatherStrings,
+  binarySearch,
 };
