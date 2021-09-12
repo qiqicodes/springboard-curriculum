@@ -38,13 +38,13 @@ everyOther("z"); //"z"
 /** isPalindrome: checks whether a string is a palindrome or not. */
 
 function isPalindrome(str, index = 0) {
-  leftIdx = index;
-  rightIdx = str.length - index - 1;
+  let leftIdx = index;
+  let rightIdx = str.length - index - 1;
 
-  if (str[leftIdx] >= str[rightIdx]) return true;
+  if (leftIdx >= rightIdx) return true;
   if (str[leftIdx] !== str[rightIdx]) return false;
 
-  return isPalindrome(str, leftIdx--);
+  return isPalindrome(str, index + 1);
 }
 isPalindrome("tacocat"); //true
 isPalindrome("racecar"); //true
@@ -56,12 +56,18 @@ isPalindrome("goodbye"); //false
 
 /** findIndex: return the index of val in arr (or -1 if val is not present). */
 
-function findIndex(arr, val) {}
-findIndex(animals, "duck"); //0
-findIndex(animals, "cat"); //1
-findIndex(animals, "pony"); //2
-findIndex(animals, "porcupine"); //-1
-findIndex(animals, "turtle"); //-1
+function findIndex(arr, val, index = 0) {
+  if (index === arr.length) return -1;
+  if (arr[index] === val) return index;
+
+  return findIndex(arr, val, index + 1);
+}
+
+findIndex(["duck", "cat", "pony", "cat"], "duck"); //0
+findIndex(["duck", "cat", "pony", "cat"], "cat"); //1
+findIndex(["duck", "cat", "pony", "cat"], "pony"); //2
+findIndex(["duck", "cat", "pony", "cat"], "porcupine"); //-1
+findIndex(["duck", "cat", "pony", "cat"], "turtle"); //-1
 
 // /** revString: return a copy of a string, but in reverse. */
 
@@ -92,7 +98,7 @@ module.exports = {
   longest,
   everyOther,
   isPalindrome,
-  // findIndex,
+  findIndex,
   // revString,
   // gatherStrings,
   // binarySearch,
