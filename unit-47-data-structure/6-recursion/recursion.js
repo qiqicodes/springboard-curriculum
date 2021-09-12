@@ -37,7 +37,15 @@ everyOther("z"); //"z"
 
 /** isPalindrome: checks whether a string is a palindrome or not. */
 
-function isPalindrome(str) {}
+function isPalindrome(str, index = 0) {
+  leftIdx = index;
+  rightIdx = str.length - index - 1;
+
+  if (str[leftIdx] >= str[rightIdx]) return true;
+  if (str[leftIdx] !== str[rightIdx]) return false;
+
+  return isPalindrome(str, leftIdx--);
+}
 isPalindrome("tacocat"); //true
 isPalindrome("racecar"); //true
 isPalindrome("a"); //true
@@ -55,37 +63,37 @@ findIndex(animals, "pony"); //2
 findIndex(animals, "porcupine"); //-1
 findIndex(animals, "turtle"); //-1
 
-/** revString: return a copy of a string, but in reverse. */
+// /** revString: return a copy of a string, but in reverse. */
 
-function revString(str) {}
+// function revString(str) {}
 
-revString("porcupine"); // "enipucrop"
-revString("duck"); //"kcud"
-revString("cat"); //"tac"
-revString("pony"); //"ynop"
+// revString("porcupine"); // "enipucrop"
+// revString("duck"); //"kcud"
+// revString("cat"); //"tac"
+// revString("pony"); //"ynop"
 
-/** gatherStrings: given an object, return an array of all of the string values. */
+// /** gatherStrings: given an object, return an array of all of the string values. */
 
-function gatherStrings(obj) {}
+// function gatherStrings(obj) {}
 
-/** binarySearch: given a sorted array of numbers, and a value,
- * return the index of that value (or -1 if val is not present). */
+// /** binarySearch: given a sorted array of numbers, and a value,
+//  * return the index of that value (or -1 if val is not present). */
 
-function binarySearch(arr, val) {}
+// function binarySearch(arr, val) {}
 
-binarySearch([1, 2, 3, 4], 4); //3
-binarySearch([1, 2], 1); //0
-binarySearch([1, 2, 3, 4, 5, 6, 7], 6); //5
-binarySearch([1, 2, 3, 4], 0); //-1
-binarySearch([1, 2], 11); //-1
+// binarySearch([1, 2, 3, 4], 4); //3
+// binarySearch([1, 2], 1); //0
+// binarySearch([1, 2, 3, 4, 5, 6, 7], 6); //5
+// binarySearch([1, 2, 3, 4], 0); //-1
+// binarySearch([1, 2], 11); //-1
 
 module.exports = {
   product,
   longest,
   everyOther,
   isPalindrome,
-  findIndex,
-  revString,
-  gatherStrings,
-  binarySearch,
+  // findIndex,
+  // revString,
+  // gatherStrings,
+  // binarySearch,
 };
