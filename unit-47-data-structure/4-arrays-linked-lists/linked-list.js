@@ -47,15 +47,38 @@ class LinkedList {
 
   // /** pop(): return & remove last item. */
 
-  pop() {}
+  pop() {
+    let popItem = this.tail.val;
+
+    // Todo: traverse list from head to one before tail.
+    this.length--;
+
+    return popItem;
+  }
 
   // /** shift(): return & remove first item. */
 
-  // shift() {}
+  shift() {
+    let shiftItem = this.head.val;
+
+    this.head = this.head.next;
+
+    this.length--;
+
+    return shiftItem;
+  }
 
   // /** getAt(idx): get val at idx. */
 
-  // getAt(idx) {}
+  getAt(idx) {
+    if (idx < 0 || idx >= this.length) return null;
+
+    let current = this.head;
+
+    for (let i = 0; i < idx; i++) current = current.next;
+
+    return current.val;
+  }
 
   // /** setAt(idx, val): set val at idx to val */
 
