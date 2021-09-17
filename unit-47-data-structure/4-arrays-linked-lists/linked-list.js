@@ -50,14 +50,12 @@ class LinkedList {
   // /** pop(): return & remove last item. */
   // Todo: throw error if list is empty
 
-  // pop() {
-  //   let popItem = this.tail.val;
-
-  //   // Todo: traverse list from head to one before tail.
-  //   this.length--;
-
-  //   return popItem;
-  // }
+  pop() {
+    // let popItem = this.tail.val;
+    // // Todo: traverse list from head to one before tail.
+    // this.length--;
+    // return popItem;
+  }
 
   // /** shift(): return & remove first item. */
   // Todo: throw error if list is empty
@@ -86,11 +84,16 @@ class LinkedList {
   }
 
   // /** setAt(idx, val): set val at idx to val */
-  // done: throw error if index is invalid
 
-  // setAt(idx, val) {
+  setAt(idx, val) {
+    if (idx < 0 || idx >= this.length) throw new Error("Index is invalid");
 
-  // }
+    let current = this.head;
+
+    for (let i = 0; i < idx; i++) current = current.next;
+
+    current.val = val;
+  }
 
   /** insertAt(idx, val): add node w/val before idx. */
 
@@ -110,19 +113,46 @@ class LinkedList {
 
     let newNode = new Node(val);
     newNode.next = current.next;
-    current.next = newNode;
-
-    // for (let i = 0; i < idx; i++) current = current.next;
-
-    // newNode.next = current.next;
-    // current.val = newNode;
+    current.val = newNode;
 
     this.length++;
   }
 
-  // /** removeAt(idx): return & remove item at idx, */
+  /** removeAt(idx): return & remove item at idx, */
 
-  // removeAt(idx) {}
+  removeAt(idx) {
+    if (idx < 0 || idx >= this.length) throw new Error("Index is invalid");
+
+    if (idx === 0) {
+      let val = this.head.val;
+      this.head = this.head.next;
+      this.length--;
+      if (this.length === 1) this.tail = this.head;
+      return val;
+    }
+
+    let prev = this.head;
+    let count = 0;
+
+    while (prev !== null && count !== idx - 1) {
+      prev = prev.next;
+      count++;
+    }
+
+    if (idx === this.length - 1) {
+      let val = prev.next.val;
+      prev.next = null;
+      this.tail = prev;
+      this.length--;
+      return val;
+    }
+
+    let val = prev.next.val;
+    prev.next = prev.next.next;
+    this.length--;
+
+    return val;
+  }
 
   // /** average(): return an average of all values in the list */
 
