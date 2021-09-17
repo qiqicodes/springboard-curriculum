@@ -51,24 +51,15 @@ class LinkedList {
   // Todo: throw error if list is empty
 
   pop() {
-    // let popItem = this.tail.val;
-    // // Todo: traverse list from head to one before tail.
-    // this.length--;
-    // return popItem;
+    return this.removeAt(this.length - 1);
   }
 
   // /** shift(): return & remove first item. */
   // Todo: throw error if list is empty
 
-  // shift() {
-  //   let shiftItem = this.head.val;
-
-  //   this.head = this.head.next;
-
-  //   this.length--;
-
-  //   return shiftItem;
-  // }
+  shift() {
+    return this.removeAt(0);
+  }
 
   // /** getAt(idx): get val at idx. */
   // done: throw error if index is invalid
@@ -98,22 +89,22 @@ class LinkedList {
   /** insertAt(idx, val): add node w/val before idx. */
 
   insertAt(idx, val) {
-    if (idx < 0 || idx >= this.length) throw new Error("Index is invalid");
+    if (idx < 0 || idx > this.length) throw new Error("Index is invalid");
 
     if (idx === 0) return this.unshift(val);
     if (idx === this.length) return this.push(val);
 
-    let current = this.head;
+    let prev = this.head;
     let count = 0;
 
-    while (current !== null && count !== idx - 1) {
-      current = current.next;
+    while (prev !== null && count !== idx - 1) {
+      prev = prev.next;
       count++;
     }
 
     let newNode = new Node(val);
-    newNode.next = current.next;
-    current.val = newNode;
+    newNode.next = prev.next;
+    prev.next = newNode;
 
     this.length++;
   }
@@ -127,7 +118,7 @@ class LinkedList {
       let val = this.head.val;
       this.head = this.head.next;
       this.length--;
-      if (this.length === 1) this.tail = this.head;
+      if (this.length < 2) this.tail = this.head;
       return val;
     }
 
@@ -156,7 +147,19 @@ class LinkedList {
 
   // /** average(): return an average of all values in the list */
 
-  // average() {}
+  average() {
+    if (this.length === 0) return 0;
+
+    let sum = 0;
+    let current = this.head;
+
+    while (current !== null) {
+      sum += current.val;
+      current = current.next;
+    }
+
+    return sum / this.length;
+  }
 }
 
 module.exports = LinkedList;
