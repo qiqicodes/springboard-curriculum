@@ -39,39 +39,44 @@ class LinkedList {
   unshift(val) {
     let newNode = new Node(val);
 
-    newNode.next = this.head;
+    if (this.head !== null) newNode.next = this.head;
     this.head = newNode;
+
+    if (this.length === 0) this.tail = this.head;
 
     this.length++;
   }
 
   // /** pop(): return & remove last item. */
+  // Todo: throw error if list is empty
 
-  pop() {
-    let popItem = this.tail.val;
+  // pop() {
+  //   let popItem = this.tail.val;
 
-    // Todo: traverse list from head to one before tail.
-    this.length--;
+  //   // Todo: traverse list from head to one before tail.
+  //   this.length--;
 
-    return popItem;
-  }
+  //   return popItem;
+  // }
 
   // /** shift(): return & remove first item. */
+  // Todo: throw error if list is empty
 
-  shift() {
-    let shiftItem = this.head.val;
+  // shift() {
+  //   let shiftItem = this.head.val;
 
-    this.head = this.head.next;
+  //   this.head = this.head.next;
 
-    this.length--;
+  //   this.length--;
 
-    return shiftItem;
-  }
+  //   return shiftItem;
+  // }
 
   // /** getAt(idx): get val at idx. */
+  // done: throw error if index is invalid
 
   getAt(idx) {
-    if (idx < 0 || idx >= this.length) return null;
+    if (idx < 0 || idx >= this.length) throw new Error("Index is invalid");
 
     let current = this.head;
 
@@ -81,12 +86,34 @@ class LinkedList {
   }
 
   // /** setAt(idx, val): set val at idx to val */
+  // done: throw error if index is invalid
 
-  // setAt(idx, val) {}
+  // setAt(idx, val) {
+
+  // }
 
   // /** insertAt(idx, val): add node w/val before idx. */
 
-  // insertAt(idx, val) {}
+  // insertAt(idx, val) {
+  //   if (idx < 0 || idx >= this.length) throw new Error("Index is invalid");
+
+  //   if (idx === 0) {
+  //     this.unshift(val);
+  //     this.length++;
+  //     return;
+  //   }
+
+  //   let newNode = new Node(val);
+  //   let current = this.head;
+  //   let prev = null;
+
+  //   for (let i = 0; i < idx; i++) current = current.next;
+
+  //   newNode.next = current.next;
+  //   current.val = newNode;
+
+  //   this.length++;
+  // }
 
   // /** removeAt(idx): return & remove item at idx, */
 
