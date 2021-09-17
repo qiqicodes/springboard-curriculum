@@ -92,28 +92,33 @@ class LinkedList {
 
   // }
 
-  // /** insertAt(idx, val): add node w/val before idx. */
+  /** insertAt(idx, val): add node w/val before idx. */
 
-  // insertAt(idx, val) {
-  //   if (idx < 0 || idx >= this.length) throw new Error("Index is invalid");
+  insertAt(idx, val) {
+    if (idx < 0 || idx >= this.length) throw new Error("Index is invalid");
 
-  //   if (idx === 0) {
-  //     this.unshift(val);
-  //     this.length++;
-  //     return;
-  //   }
+    if (idx === 0) return this.unshift(val);
+    if (idx === this.length) return this.push(val);
 
-  //   let newNode = new Node(val);
-  //   let current = this.head;
-  //   let prev = null;
+    let current = this.head;
+    let count = 0;
 
-  //   for (let i = 0; i < idx; i++) current = current.next;
+    while (current !== null && count !== idx - 1) {
+      current = current.next;
+      count++;
+    }
 
-  //   newNode.next = current.next;
-  //   current.val = newNode;
+    let newNode = new Node(val);
+    newNode.next = current.next;
+    current.next = newNode;
 
-  //   this.length++;
-  // }
+    // for (let i = 0; i < idx; i++) current = current.next;
+
+    // newNode.next = current.next;
+    // current.val = newNode;
+
+    this.length++;
+  }
 
   // /** removeAt(idx): return & remove item at idx, */
 
