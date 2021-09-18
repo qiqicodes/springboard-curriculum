@@ -44,7 +44,38 @@ function findMedian(nums) {
   return isFloat(median) ? median.toFixed(2) : median;
 }
 
-function findMode(nums) {}
+function findMode(nums) {
+  let modeObj = {};
+
+  for (i=0;i<nums.length;i++) {
+    modeObj.hasOwnProperty(nums[i]) ? modeObj[nums[i]]++ : modeObj[nums[i]] = 1;
+  }
+
+  const iterator = Object.values(modeObj);
+  let max = Math.max(...iterator);
+  let modeIdx = [];
+
+  if (max === 1) return 0;
+  
+  for (let i = 0; i< iterator.length; i++) {
+    if (iterator[i] === max) {
+      modeIdx.push(i);
+    }
+  }
+
+  const iterator2 = Object.keys(modeObj);
+  if (modeIdx.length === 1) {
+    return iterator2[modeIdx];
+  } else {
+    let result = iterator2[modeIdx[0]];
+    for (let i = 1; i < modeIdx.length; i++) {
+      result += `, ${iterator2[modeIdx[i]]}`;
+    }
+    
+    return result;
+  }
+ 
+}
 
 app.get("/mean", (req, res) => {
   console.log(req.query.nums);
