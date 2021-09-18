@@ -17,11 +17,17 @@ function convertStrToNum(input) {
   return result;
 }
 
+function isFloat(n) {
+  return Number(n) === n && n % 1 !== 0;
+}
+
 function findMean(nums) {
   if (nums.length === 0) {
     return 0;
   }
-  return nums.reduce((acc, cur) => acc + cur) / nums.length;
+
+  let mean = nums.reduce((acc, cur) => acc + cur) / nums.length;
+  return isFloat(mean) ? mean.toFixed(2) : mean;
 }
 
 app.get("/mean", (req, res) => {
