@@ -30,6 +30,22 @@ function findMean(nums) {
   return isFloat(mean) ? mean.toFixed(2) : mean;
 }
 
+function findMedian(nums) {
+  nums.sort((a,b) => a - b)
+
+  let midIdx = Math.floor(nums.length/2);
+  let median;
+  if (nums.length % 2 === 0) {
+    median = (nums[midIdx] + nums[midIdx + 1]) / 2;
+  } else {
+    median = nums[midIdx];
+  }
+
+  return isFloat(median) ? median.toFixed(2) : median;
+}
+
+function findMode(nums) {}
+
 app.get("/mean", (req, res) => {
   console.log(req.query.nums);
   nums = req.query.nums.split(",");
