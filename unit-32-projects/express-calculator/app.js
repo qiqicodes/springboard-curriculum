@@ -54,13 +54,13 @@ function findMode(nums) {
   const iterator = Object.values(modeObj);
   let max = Math.max(...iterator);
   let modeIdx = [];
-
-  if (max === 1) return 0;
   
   for (let i = 0; i< iterator.length; i++) {
     if (iterator[i] === max) {
       modeIdx.push(i);
     }
+
+    if (modeIdx.length === iterator.length) return 0;
   }
 
   const iterator2 = Object.keys(modeObj);
