@@ -20,6 +20,7 @@ app.get("/", (req, res) => {
 
   res.send(result);
 });
+
 // TODO: GET routes
 app.get("/mean", (req, res, next) => {
   // Todo: handle error
