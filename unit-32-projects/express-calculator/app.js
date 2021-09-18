@@ -10,26 +10,31 @@ const {
 } = require("./helpers");
 
 app.get("/", (req, res) => {
-  const result = `Hello, Dear! 
-  Let's find your mean, median, and mode!
-  Please enter your numbers in the form of a comma-separated list in the URL.
-  For example: 1,2,3,4,5,6,7,8,9,10
-  =]
+  const result = `<h1>Hello, Dear! </h1>
+  <p>Let's find your mean, median, and mode! <br>
+  Please enter your numbers in the form of a comma-separated list in the URL. <br>
+  <i>For example: 1,2,3,4,5,6,7,8,9,10</i>
+  <br>=]
+  <br><br>
+  <b>Fill in your query like this: /mean?nums=1,2,3,4</b></p>`;
 
-  Fill in your query like this: /mean?nums=1,2,3,4`;
-
-  res.send(result);
+  res.format({
+    "text/html": function () {
+      res.send(result);
+    },
+  });
 });
 
 // TODO: GET routes
 app.get("/mean", (req, res, next) => {
   // Todo: handle error
-  // if (!req.query.nums)
-  //   return new ExpressError(
-  //     "Please pass in your query to nums with a list of numbers separated by comma"
-  //   );
+  console.log("#######################", req.query);
+  if (Object.keys(req.query).length === 0 || !req.query.nums) {
+    throw new ExpressError(
+      "Please pass in your query to nums with a list of numbers separated by comma"
+    );
+  }
 
-  console.log(req.query.nums);
   let result = {
     operation: "mean",
     value: findMean(convertStrToNum(req.query.nums)),
