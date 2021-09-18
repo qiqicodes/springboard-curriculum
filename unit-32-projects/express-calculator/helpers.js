@@ -1,13 +1,24 @@
-function convertStrToNum(input) {
+function convertStrToNum(inputStr) {
   const result = [];
-  for (let i = 0; i < input.length; i++) {
-    let number = Number(input[i]);
+  const arr = inputStr.split(",");
 
-    if (Number.isNaN(number)) {
-      return new Error(`Invalid number: ${input[i]} at index: ${i}`);
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === "") {
+      throw new Error(
+        "Extra commas detected. Please pass in your query to nums with a list of numbers separated by comma."
+      );
     }
+
+    let number = Number(arr[i]);
+    if (isNaN(number) === true) {
+      throw new Error(
+        `Invalid number: '${arr[i]}' is not a number. Please pass in your query to nums with a list of numbers separated by comma.`
+      );
+    }
+
     result.push(number);
   }
+  console.log(result);
   return result;
 }
 

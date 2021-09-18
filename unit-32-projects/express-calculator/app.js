@@ -29,11 +29,11 @@ app.get("/mean", (req, res, next) => {
   //     "Please pass in your query to nums with a list of numbers separated by comma"
   //   );
 
-  console.log(req);
   console.log(req.query.nums);
-  nums = req.query.nums.split(",");
-  console.log(nums);
-  let result = { operation: "mean", value: findMean(convertStrToNum(nums)) };
+  let result = {
+    operation: "mean",
+    value: findMean(convertStrToNum(req.query.nums)),
+  };
 
   return res.send(result);
 });
