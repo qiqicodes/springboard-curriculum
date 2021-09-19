@@ -1,13 +1,14 @@
 const express = require("express");
-const app = express();
-
 const ExpressError = require("./expressError");
 const {
+  checkEmptyQueryObjectOrEmptyNumsList,
   convertStrToNum,
   findMean,
   findMedian,
   findMode,
 } = require("./helpers");
+
+const app = express();
 
 app.get("/", (req, res) => {
   const result = `<h1>Hello, Dear! </h1>
@@ -25,15 +26,9 @@ app.get("/", (req, res) => {
   });
 });
 
-// TODO: GET routes
-app.get("/mean", (req, res, next) => {
-  // Todo: handle error
-  console.log("#######################", req.query);
-  if (Object.keys(req.query).length === 0 || !req.query.nums) {
-    throw new ExpressError(
-      "Please pass in your query to nums with a list of numbers separated by comma"
-    );
-  }
+// DONE: GET routes
+app.get("/mean", (req, res) => {
+  checkEmptyQueryObjectOrEmptyNumsList(req.query);
 
   let result = {
     operation: "mean",
@@ -44,12 +39,12 @@ app.get("/mean", (req, res, next) => {
 });
 
 // TODO: GET routes
-app.get("/median", (req, res, next) => {
+app.get("/median", (req, res) => {
   // Todo: handle error
 });
 
 // TODO: GET routes
-app.get("/mode", (req, res, next) => {
+app.get("/mode", (req, res) => {
   // Todo: handle error
 });
 
