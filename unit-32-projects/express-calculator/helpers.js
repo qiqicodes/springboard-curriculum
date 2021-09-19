@@ -32,7 +32,7 @@ function convertStrToNum(inputStr) {
 }
 
 function isFloat(n) {
-  return Number(n) === n && n % 1 !== 0;
+  return n === n && n % 1 !== 0;
 }
 
 function findMean(nums) {

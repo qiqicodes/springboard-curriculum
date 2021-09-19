@@ -48,6 +48,14 @@ describe("Check if the nums values are valid numbers", function () {
   });
 });
 
+
+describe("isFloat functionality", function () {
+  it("validates a number if it is a float", function () {
+    expect(isFloat(2)).toEqual(false);
+    expect(isFloat(2.5)).toEqual(true);
+  });
+});
+
 describe("findMean functionality", function () {
   it("finds the mean of an empty array", function () {
     expect(findMean([])).toEqual("0");
