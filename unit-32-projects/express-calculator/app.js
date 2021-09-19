@@ -26,7 +26,6 @@ app.get("/", (req, res) => {
   });
 });
 
-// DONE: GET routes
 app.get("/mean", (req, res) => {
   checkEmptyQueryObjectOrEmptyNumsList(req.query);
 
@@ -38,7 +37,6 @@ app.get("/mean", (req, res) => {
   return res.send(result);
 });
 
-// DONE: GET routes
 app.get("/median", (req, res) => {
   checkEmptyQueryObjectOrEmptyNumsList(req.query);
 
@@ -50,7 +48,6 @@ app.get("/median", (req, res) => {
   return res.send(result);
 });
 
-// DONE: GET routes
 app.get("/mode", (req, res) => {
   checkEmptyQueryObjectOrEmptyNumsList(req.query);
 
@@ -84,7 +81,6 @@ app.use(function (req, res, next) {
 
 app.use(function (err, req, res, next) {
   // generic error default to 500 server error
-
   let status = err.status || 500;
   let message = err.message || "Something went wrong";
 

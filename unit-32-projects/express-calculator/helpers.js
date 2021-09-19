@@ -36,7 +36,7 @@ function isFloat(n) {
 
 function findMean(nums) {
   if (nums.length === 0) {
-    return 0;
+    return "0";
   }
 
   const mean = nums.reduce((acc, cur) => acc + cur) / nums.length;
@@ -59,7 +59,7 @@ function findMedian(nums) {
     median = nums[midIdx];
   }
 
-  return isFloat(median) ? median.toFixed(2) : median;
+  return isFloat(median) ? median.toFixed(2).toString() : median.toString();
 }
 
 function findMode(nums) {
@@ -84,7 +84,7 @@ function findMode(nums) {
       modeIdx.push(i);
     }
 
-    if (modeIdx.length === iterator.length) return 0;
+    if (modeIdx.length === iterator.length) return "0";
   }
 
   const iterator2 = Object.keys(modeObj);
@@ -103,6 +103,7 @@ function findMode(nums) {
 module.exports = {
   checkEmptyQueryObjectOrEmptyNumsList,
   convertStrToNum,
+  isFloat,
   findMean,
   findMedian,
   findMode,
