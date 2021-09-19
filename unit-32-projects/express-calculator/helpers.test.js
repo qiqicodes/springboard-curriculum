@@ -48,7 +48,6 @@ describe("Check if the nums values are valid numbers", function () {
   });
 });
 
-
 describe("isFloat functionality", function () {
   it("validates a number if it is a float", function () {
     expect(isFloat(2)).toEqual(false);
