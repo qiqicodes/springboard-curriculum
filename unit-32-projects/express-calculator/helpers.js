@@ -1,4 +1,5 @@
 function checkEmptyQueryObjectOrEmptyNumsList(input) {
+  console.log(input);
   if (Object.keys(input).length === 0 || !input.nums) {
     throw new Error(
       "Please pass in your query to nums with a list of numbers separated by comma"
