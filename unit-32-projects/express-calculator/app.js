@@ -62,6 +62,20 @@ app.get("/mode", (req, res) => {
   return res.send(result);
 });
 
+app.get("/all", (req, res) => {
+  checkEmptyQueryObjectOrEmptyNumsList(req.query);
+
+  let numsArr = convertStrToNum(req.query.nums);
+
+  let result = {
+    operation: "all",
+    mean: findMean(numsArr),
+    median: findMedian(numsArr),
+    mode: findMode(numsArr),
+  };
+
+  return res.send(result);
+});
 app.use(function (req, res, next) {
   const notFoundError = new ExpressError("Not Found", 404);
 
