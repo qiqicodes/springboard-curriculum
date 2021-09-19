@@ -73,6 +73,7 @@ app.get("/all", (req, res) => {
 
   return res.send(result);
 });
+
 app.use(function (req, res, next) {
   const notFoundError = new ExpressError("Not Found", 404);
 
