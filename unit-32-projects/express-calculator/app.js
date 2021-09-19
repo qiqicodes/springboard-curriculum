@@ -38,14 +38,28 @@ app.get("/mean", (req, res) => {
   return res.send(result);
 });
 
-// TODO: GET routes
+// DONE: GET routes
 app.get("/median", (req, res) => {
-  // Todo: handle error
+  checkEmptyQueryObjectOrEmptyNumsList(req.query);
+
+  let result = {
+    operation: "median",
+    value: findMedian(convertStrToNum(req.query.nums)),
+  };
+
+  return res.send(result);
 });
 
-// TODO: GET routes
+// DONE: GET routes
 app.get("/mode", (req, res) => {
-  // Todo: handle error
+  checkEmptyQueryObjectOrEmptyNumsList(req.query);
+
+  let result = {
+    operation: "mode",
+    value: findMode(convertStrToNum(req.query.nums)),
+  };
+
+  return res.send(result);
 });
 
 app.use(function (req, res, next) {
