@@ -52,9 +52,9 @@ router.patch("/:name", function (req, res, next) {
 
 router.delete("/:name", function (req, res, next) {
   try {
-    let foundItemIdx = items.findIndex((item) => item.id === req.params.name);
+    let foundItemIdx = items.findIndex((item) => item.name === req.params.name);
     console.log(foundItemIdx, req.params.name);
-    if (foundItemIdx === undefined) {
+    if (foundItemIdx === -1) {
       throw new ExpressError("Item not found", 404);
     }
 

@@ -57,6 +57,36 @@ describe("GET /items/:name", () => {
   it("responds with 404 for invalid item", async () => {
     const res = await request(app).delete(`/items/nothere`);
     expect(res.statusCode).toBe(404);
-    expect(res.body).toEqual({ message: "Items not found", status: 404 });
+    expect(res.body).toEqual({ message: "Item not found", status: 404 });
+  });
+});
+
+describe("/PATCH /items/:name", () => {
+  it("updates a specific item's name with PATCH method", async () => {
+    const res = await request(app)
+      .patch(`/items/${flower.name}`)
+      .send({ name: "hana" });
+    expect(res.statusCode).toBe(200);
+    expect(res.body).toEqual({ updated: { name: "hana", price: 2 } });
+  });
+  it("responds with 404 for an invalid name", async () => {
+    const res = await request(app)
+      .patch(`/items/nothere`)
+      .send({ name: "nothere" });
+    expect(res.statusCode).toBe(404);
+    expect(res.body).toEqual({ message: "Item not found", status: 404 });
+  });
+});
+
+describe("/DELETE /items/:name", () => {
+  it("deletes a specific item", async () => {
+    const res = await request(app).delete(`/items/${flower.name}`);
+    expect(res.statusCode).toBe(200);
+    expect(res.body).toEqual({ message: "Deleted" });
+  });
+  it("responds with 404 for deleting an invalid item", async () => {
+    const res = await request(app).delete(`/items/nothere`);
+    expect(res.statusCode).toBe(404);
+    expect(res.body).toEqual({ message: "Item not found", status: 404 });
   });
 });
