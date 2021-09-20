@@ -47,3 +47,16 @@ describe("POST /items", () => {
     });
   });
 });
+
+describe("GET /items/:name", () => {
+  it("retrieves a specific item by name via GET method", async () => {
+    const res = await request(app).get(`/items/${flower.name}`);
+    expect(res.statusCode).toBe(200);
+    expect(res.body).toEqual(flower);
+  });
+  it("responds with 404 for invalid item", async () => {
+    const res = await request(app).delete(`/items/nothere`);
+    expect(res.statusCode).toBe(404);
+    expect(res.body).toEqual({ message: "Items not found", status: 404 });
+  });
+});
