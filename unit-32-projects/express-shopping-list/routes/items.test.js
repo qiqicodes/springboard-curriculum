@@ -14,3 +14,12 @@ beforeEach(function () {
 afterEach(function () {
   items.length = 0;
 });
+
+describe("GET /items", () => {
+  test("Get all items", async () => {
+    const res = await request(app).get("/items");
+    expect(res.statusCode).toBe(200);
+    expect(res.body).toEqual([flower]);
+    expect(res.body).toHaveLength(1);
+  });
+});
