@@ -1,68 +1,68 @@
 const express = require("express");
+const ExpressError = require("../expressError");
 const router = express.Router();
 const items = require("../fakeDb");
 
-// Todo: GET /items - this should render a list of shopping items.
 router.get("/", function (req, res, next) {
   try {
-    const itemsList = items;
-    res.json(itemsList);
+    res.json(items);
   } catch (error) {
     next(error);
   }
 });
-// sample response
-// [{“name”: “popsicle”, “price”: 1.45}, {“name”:”cheerios”, “price”: 3.40}]
 
-// Todo: POST /items - this route should accept JSON data and add it to the shopping list.
 router.post("/", function (req, res, next) {
   try {
-    //   Todo: add the new item to the fake database.
-    let item;
-    res.json({ added: item });
+    if (!req.body.name || !req.body.price)
+      throw new ExpressError("Name and price are required", 400);
+
+    let newItem = { name: req.body.name, price: req.body.price };
+    items.push(newItem);
+    res.status(200).json({ added: newItem });
   } catch (error) {
     next(error);
   }
 });
-// sample request/response
-// {“name”:”popsicle”, “price”: 1.45} => {“added”: {“name”: “popsicle”, “price”: 1.45}}
 
-// Todo: GET /items/:name - this route should display a single item’s name and price.
 router.get("/:name", function (req, res, next) {
   try {
-    //   Todo: find the item in the fake database.
-    let item;
-    res.json(item);
+    let foundItem = items.find((item) => item.name === req.params.name);
+    if (foundItem === undefined) {
+      throw new ExpressError("Item not found", 404);
+    }
+    res.status(200).json(foundItem);
   } catch (error) {
     next(error);
   }
 });
-// sample request/response
-// {“name”: “popsicle”, “price”: 1.45}
 
-// Todo: PATCH /items/:name, this route should modify a single item’s name and/or price.
 router.patch("/:name", function (req, res, next) {
   try {
-    //   Todo update the specified item in the fake database.
-    let item;
-    res.json({ updated: item });
+    let foundItem = items.find((item) => item.name === req.params.name);
+    if (foundItem === undefined) {
+      throw new ExpressError("Item not found", 404);
+    }
+
+    foundItem.name = req.body.name;
+    res.status(200).json({ updated: foundItem });
   } catch (error) {
     next(error);
   }
 });
-// sample request/response
-// {“name”:”new popsicle”, “price”: 2.45} => {“updated”: {“name”: “new popsicle”, “price”: 2.45}}
 
-// Todo: DELETE /items/:name - this route should allow you to delete a specific item from the array.
 router.delete("/:name", function (req, res, next) {
   try {
-    //   Todo: remove specified item from list
-    res.json({ message: "Deleted" });
+    let foundItemIdx = items.findIndex((item) => item.id === req.params.name);
+    console.log(foundItemIdx, req.params.name);
+    if (foundItemIdx === undefined) {
+      throw new ExpressError("Item not found", 404);
+    }
+
+    items.splice(foundItemIdx, 1);
+    res.status(200).json({ message: "Deleted" });
   } catch (error) {
     next(error);
   }
 });
-// sample request/response
-// {message: “Deleted”}
 
 module.exports = router;
